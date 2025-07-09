@@ -131,13 +131,13 @@ Build.cs 文件中加入：
 //多人游戏 的服务器组成
 ```
 
-![Screenshot_20240411_080941](D:\Note\UE_Note\photos\Screenshot_20240411_080941.jpg)
+![Screenshot_20240411_080941](.\photos\Screenshot_20240411_080941.jpg)
 
 ```c++
 //不同情况下的适用情况
 ```
 
-![](D:\Note\UE_Note\photos\Screenshot_20240411_082841.jpg)
+![](.\photos\Screenshot_20240411_082841.jpg)
 
 ```c++
 //初始化Actor信息
@@ -185,7 +185,7 @@ void AAuraCharacter::InitialAbilityActor()
 
 ```
 
-![Screenshot_20240411_084010](D:\Note\UE_Note\photos\Screenshot_20240411_084010.jpg)
+![Screenshot_20240411_084010](.\photos\Screenshot_20240411_084010.jpg)
 
 ## 7.AttributeSet的实现
 
@@ -344,7 +344,7 @@ UPROPERTY(BlueprintReadOnly, Category = "WidgetController")
 TObjectPtr<UObject> WidgetController;
 ```
 
-![image-20240411232546449](D:\Note\UE_Note\photos\image-20240411232546449.png)
+![image-20240411232546449](.\photos\image-20240411232546449.png)
 
 ## 10.血量进度条Widget的制作(蓝图Blueprint)
 
@@ -352,7 +352,7 @@ TObjectPtr<UObject> WidgetController;
 //变量信息
 ```
 
-<img src="D:\Note\UE_Note\photos\image-20240412180016673.png" alt="image-20240412180016673" style="zoom:25%;" />
+<img src=".\photos\image-20240412180016673.png" alt="image-20240412180016673" style="zoom:25%;" />
 
 
 
@@ -360,13 +360,13 @@ TObjectPtr<UObject> WidgetController;
 //函数的内部都是设置图片大小类型什么的
 ```
 
-<img src="D:\Note\UE_Note\photos\image-20240412180038737.png" alt="image-20240412180038737" style="zoom:25%;" />
+<img src=".\photos\image-20240412180038737.png" alt="image-20240412180038737" style="zoom:25%;" />
 
-<img src="D:\Note\UE_Note\photos\image-20240412180053077.png" alt="image-20240412180053077" style="zoom:25%;" />
+<img src=".\photos\image-20240412180053077.png" alt="image-20240412180053077" style="zoom:25%;" />
 
-<img src="D:\Note\UE_Note\photos\image-20240412180104529.png" alt="image-20240412180104529" style="zoom:25%;" />
+<img src=".\photos\image-20240412180104529.png" alt="image-20240412180104529" style="zoom:25%;" />
 
-<img src="D:\Note\UE_Note\photos\image-20240412180118038.png" alt="image-20240412180118038" style="zoom:25%;" />
+<img src=".\photos\image-20240412180118038.png" alt="image-20240412180118038" style="zoom:25%;" />
 
 
 
@@ -896,7 +896,7 @@ float UMMC_MaxHealth::CalculateBaseMagnitude_Implementation(const FGameplayEffec
 
 ```
 
-![屏幕截图 2024-05-31 233117](D:\Note\UE_Note\photos\屏幕截图 2024-05-31 233117.png)
+![屏幕截图 2024-05-31 233117](.\photos\屏幕截图 2024-05-31 233117.png)
 
 ### 15.2.数据的更新
 
@@ -1144,11 +1144,11 @@ void UAttributeMenuWidgetController::BroadcastAttributeInfo(const FGameplayTag& 
 //Activation Owned Tags
 ```
 
-![image-AbilityTag](D:\Note\UE_Note\photos\AbilityTag.png)
+![image-AbilityTag](.\photos\AbilityTag.png)
 
-![image-20240627234829916](D:\Note\UE_Note\photos\InstancingPolicy.png)
+![image-20240627234829916](.\photos\InstancingPolicy.png)
 
-![image-20240627235105517](D:\Note\UE_Note\photos\NetExecutionPolicy)
+![image-20240627235105517](.\photos\NetExecutionPolicy.png)
 
 ### 16.4.Ability的输入使用了DataAsset
 
@@ -1311,7 +1311,7 @@ SphereComponent->OnComponentBeginOverlap.AddDynamic(this, &AAuraProjectile::Proj
 //Send Gameplay Event To Actor函数 和 GA_FireBall 中的Wait Gameplay Event来传递信息通知GA去生成FireBall
 ```
 
-![image-20241201004810854](D:\Note\UE_Note\photos\Notify.png)
+![image-20241201004810854](.\photos\Notify.png)
 
 ### 17.3.火球的生成的方向
 
@@ -2011,11 +2011,11 @@ AuraAIController->GetBlackboardComponent()->SetValueAsBool(FName("bHitReacting")
 
 EQS效果展示图：
 
-![image-20241129152812903](D:\Note\UE_Note\photos\EQS.png)
+![image-20241129152812903](.\photos\EQS.png)
 
 更改生成的图案
 
-![image-20241129153246760](D:\Note\UE_Note\photos\EQS_1.png)
+![image-20241129153246760](.\photos\EQS_1.png)
 
 在BehaviorTree中运行`RunEQ` Task可以获取Score最高点的位置
 
@@ -2072,7 +2072,7 @@ for (TSubclassOf<UGameplayAbility> AbilityClassOf : DefaultInfo.SetupAbilities)
 
 由于通过`Task`来激活`Ability`故在`Attack Task`中去通过`AbilitySystemComponent`调用`Try Activate Abilities by Tag`
 
-![image-20241130004528266](D:\Note\UE_Note\photos\ActivateAbility.png)
+![image-20241130004528266](.\photos\ActivateAbility.png)
 
 ### 24.2.Attack Montage
 
@@ -2086,11 +2086,11 @@ for (TSubclassOf<UGameplayAbility> AbilityClassOf : DefaultInfo.SetupAbilities)
 
 
 
-![image-20241130154229674](D:\Note\UE_Note\photos\MotionWarping.png)
+![image-20241130154229674](.\photos\MotionWarping.png)
 
 需要在Montage中进行的设置 添加通知状态
 
-![image-20241130154534495](D:\Note\UE_Note\photos\MotionWarping_1.png)
+![image-20241130154534495](.\photos\MotionWarping_1.png)
 
 在应用`MotionTarget`需要调用`SetFacingTarget`函数其中
 
@@ -2129,7 +2129,7 @@ AActor* GetCombatTarget();
 
 来执行相应的`Event`
 
-![image-20241201004633744](D:\Note\UE_Note\photos\WaitGameplayEvent.png)
+![image-20241201004633744](.\photos\WaitGameplayEvent.png)
 
 
 
@@ -2234,7 +2234,7 @@ TArray<FTaggedMontage> GetAttackMontages() const;
 
 先endAbility，再GA_HitReact中CancelAbilitywithTag中添加Abilities.Attack消除Attack Tag
 
-![image-20241204234249325](D:\Note\UE_Note\photos\AttackBug.png)
+![image-20241204234249325](.\photos\AttackBug.png)
 
 ### 24.8.Ranger Attack
 
@@ -2254,15 +2254,15 @@ Attack的动画Montage
 
 在ABP中获取Owner Pawn再得到Get Mesh通过Mesh获取右手的Socket Transform并进行存储
 
-![image-20241207190749013](D:\Note\UE_Note\photos\GetRightHandSocket.png)
+![image-20241207190749013](.\photos\GetRightHandSocket.png)
 
 再在ABP中调用Transform(Modify) Bone将Slingshot中相应的插槽绑定到相应的位置
 
-![image-20241207190941381](D:\Note\UE_Note\photos\TransformBone.png)
+![image-20241207190941381](.\photos\TransformBone.png)
 
 需要ABP中添加一个bool来调控是否该松开通过Montage的通知来设置
 
-![image-20241207191118669](D:\Note\UE_Note\photos\SetHolding.png)
+![image-20241207191118669](.\photos\SetHolding.png)
 
 
 
@@ -2287,7 +2287,7 @@ USoundBase* ImpactSound;
 
 重载On Execute函数并使用其中的参数来获取外部数据
 
-![image-20241213235637259](D:\Note\UE_Note\photos\GameplayCue.png)
+![image-20241213235637259](.\photos\GameplayCue.png)
 
 在On Execute函数中去Spawn Niagara 和Play Sound
 
@@ -2382,7 +2382,7 @@ TArray<FVector> UAuraSummonGameplayAbility::GetRandomSummonLocation()
 
 SpawnActor后需要SpawnDefaultController
 
-![image-20250203103514279](D:\Note\UE_Note\photos\image-20250203103514279.png)
+![image-20250203103514279](.\photos\image-20250203103514279.png)
 
 复制单独的BehaviorTree,将Attack换成Elementalist Attack
 
@@ -2390,7 +2390,7 @@ SpawnActor后需要SpawnDefaultController
 
 是否转换为Summon Tag
 
-![image-20250203143222002](D:\Note\UE_Note\photos\image-20250203143222002.png)
+![image-20250203143222002](.\photos\image-20250203143222002.png)
 
 对应召唤SpawnActor进行绑定事件Bind Event to Destroyed后，
 
@@ -2450,7 +2450,7 @@ r.Streaming.PoolSize=1000
 
 可以多写几个TimeLine然后用不同的事件，在Switch中通过random触发
 
-![image-20250211181051231](D:\Note\UE_Note\photos\image-20250211181051231.png)
+![image-20250211181051231](.\photos\image-20250211181051231.png)
 
 ### 25.4.摄像机视线遮挡(Fade Actor)
 
@@ -2464,7 +2464,7 @@ DitherTemporalAA来实现材质球的淡入和淡出
 
 Interface在蓝图实现需要在对应的Blueprint,类设置中
 
-![image-20250211202817436](D:\Note\UE_Note\photos\image-20250211202817436.png)
+![image-20250211202817436](.\photos\image-20250211202817436.png)
 
 在Interface中添加的函数可以在添加后用`Event+函数名`(Event Fade In)实现
 
@@ -2478,7 +2478,7 @@ Interface在蓝图实现需要在对应的Blueprint,类设置中
 
 ### 26.1.重做OverlapWidget界面
 
-![image-20250212175200498](D:\Note\UE_Note\photos\image-20250212175200498.png)
+![image-20250212175200498](.\photos\image-20250212175200498.png)
 
 对HorizontalBox和VerticalBox的叠加使用
 
@@ -2486,7 +2486,7 @@ Interface在蓝图实现需要在对应的Blueprint,类设置中
 
 小的WBP_Spell射击可以参考WBP_Health
 
-![image-20250212225602054](D:\Note\UE_Note\photos\image-20250212225602054.png)
+![image-20250212225602054](.\photos\image-20250212225602054.png)
 
 需要初始化
 
@@ -2580,7 +2580,7 @@ void UAuraAbilitySystemComponent::GrantGameplayPassiveAbilities(const TArray<TSu
 
 这样我们可以收到C++发出的信号并接受
 
-![image-20250224174058184](D:\Note\UE_Note\photos\image-20250224174058184.png)
+![image-20250224174058184](.\photos\image-20250224174058184.png)
 
 
 
@@ -2845,15 +2845,15 @@ void UAuraAbilitySystemComponent::ForEachAbility(FForEachAbility Delegate)
 
 首先我们需要将需要调用OverlapWidgetController内部函数的WBP进行`SetWidgetController`
 
-![image-20250219202651092](D:\Note\UE_Note\photos\image-20250219202651092.png)
+![image-20250219202651092](.\photos\image-20250219202651092.png)
 
 并且我们在C++写了一个动态多播进行传递数据，我们需要在WBP中进行调用
 
-![image-20250219202927649](D:\Note\UE_Note\photos\image-20250219202927649.png)
+![image-20250219202927649](.\photos\image-20250219202927649.png)
 
 这样我们就可以在蓝图中获得C++的数据了接下来就是Tag的匹配和设置图案了
 
-![image-20250219203029398](D:\Note\UE_Note\photos\image-20250219203029398.png)
+![image-20250219203029398](.\photos\image-20250219203029398.png)
 
 #### 26.4.4.客户端的应用
 
@@ -2869,7 +2869,7 @@ virtual void OnRep_ActivateAbilities();
 
 在Ability中有相应的位置可以放置Cost和Cooldow Effect
 
-![image-20250220173100675](D:\Note\UE_Note\photos\image-20250220173100675.png)
+![image-20250220173100675](.\photos\image-20250220173100675.png)
 
 使用后需要在蓝图中调用`Commit Ability`函数
 
@@ -3017,7 +3017,7 @@ UCLASS(BlueprintType,meta = (ExposedAsyncProxy = "AsyncTask"))
 
 放置AsyncTask多次声明
 
-![image-20250221201730065](D:\Note\UE_Note\photos\image-20250221201730065.png)
+![image-20250221201730065](.\photos\image-20250221201730065.png)
 
 设置透明和`Set Timer By Event`一个计时器
 
@@ -3109,7 +3109,7 @@ void UOverlapWidgetController::OnLevelChange(int32 NewLevel)
 
 需要用的时候，即升级后Create Widget 之后Add In Viewport 即可
 
-![image-20250226172338526](D:\Note\UE_Note\photos\image-20250226172338526.png)
+![image-20250226172338526](.\photos\image-20250226172338526.png)
 
 Play Sound 和 Play Animation在Level Message构造完成后使用
 
