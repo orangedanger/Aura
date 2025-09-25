@@ -36,7 +36,8 @@ void UAuraAbilitySystemComponent::GrantGameplayAbilities(const TArray<TSubclassO
 		{
 			//进行标签的绑定,自定义的Tag加入到Ability的动态标签中
 			AbilitySpec.DynamicAbilityTags.AddTag(GameplayAbility->InputGameplayTag);
-			AbilitySpec.DynamicAbilityTags.AddTag(FAuraGameplayTags::Get().Spell_State_Eligible);
+			AbilitySpec.DynamicAbilityTags.AddTag(FAuraGameplayTags::Get().Spell_State_Equipped);
+
 			//将Ability赋予给相应的角色
 			GiveAbility(AbilitySpec);
 		}
@@ -84,6 +85,7 @@ void UAuraAbilitySystemComponent::AbilityInputTagReleased(const FGameplayTag& In
 	{
 		if (AbilitySpec.DynamicAbilityTags.HasTagExact(InputTag))
 		{
+
 			AbilitySpecInputReleased(AbilitySpec);
 		}
 	}
@@ -178,16 +180,22 @@ void UAuraAbilitySystemComponent::UpdataAbilitiesState(int InLevel)
 	
 	for (auto& Info : AbilityInfo->AbilityInfomation)
 	{
+		//如果技能需求等级小于当前等级
 		if (Info.RequiredLevel <= InLevel)
 		{
+			//检测当前Ability是否在激活的Ability中
 			if (GetAbilitySpecFromAbilityTag(Info.AbilityTag) ==nullptr)
 			{
+				//如果这个Ability不处于激活状态就激活它
 				FGameplayAbilitySpec AbilitySpec = FGameplayAbilitySpec(Info.Ability, 1);
 				AbilitySpec.DynamicAbilityTags.AddTag(FAuraGameplayTags::Get().Spell_State_Eligible);
 				GiveAbility(AbilitySpec);
 
-				ClientAbilityStateChange(Info.AbilityTag, FAuraGameplayTags::Get().Spell_State_Eligible);
+				//对于修改AbilitySpec的行为需要对其进行Mark来同步客户端信息
 				MarkAbilitySpecDirty(AbilitySpec);
+
+				ClientAbilityStateChange(Info.AbilityTag, FAuraGameplayTags::Get().Spell_State_Eligible);
+				
 			}
 		}
 	}

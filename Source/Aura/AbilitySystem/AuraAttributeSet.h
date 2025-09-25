@@ -60,8 +60,9 @@ class AURA_API UAuraAttributeSet : public UAttributeSet
 public:
 	UAuraAttributeSet();
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-
+	//在Attribute的值修改之前调用
 	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue)override;
+	//在Attribute的值修改之后调用
 	virtual void PostAttributeChange(const FGameplayAttribute& Attribute, float OldValue, float NewValue)override;
 	virtual void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data)override;
 

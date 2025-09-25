@@ -121,5 +121,5 @@ void UOverlapWidgetController::OnXpChange(int32 NewXp)
 
 void UOverlapWidgetController::OnLevelChange(int32 NewLevel)
 {
-	OnLevelChangeDelegate.Broadcast(NewLevel);
+	//OnLevelChangeDelegate.Broadcast(NewLevel);
 }

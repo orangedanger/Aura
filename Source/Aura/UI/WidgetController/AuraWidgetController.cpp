@@ -37,6 +37,7 @@ void UAuraWidgetController::BroadcastAbilityInfo()
 		{
 			FAuraAbilityInfo info = AbilityInfo.Get()->FindAbilityInfoByAbilityTag(AuraAbilitySystemComponent->GetAbilityTagByAbilitySpec(AbilitySpec));
 			info.InputTag = AuraAbilitySystemComponent->GetInputTagByAbilitySpec(AbilitySpec);
+			info.StateTag = AuraAbilitySystemComponent->GetStateTagByAbilitySpec(AbilitySpec);
 			//将Info数据发送到蓝图中
 			OnAbilityInfoSingnature.Broadcast(info);
 		});

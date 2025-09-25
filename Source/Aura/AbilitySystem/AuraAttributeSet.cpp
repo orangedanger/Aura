@@ -201,12 +201,15 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 			const int32 CurrentLevel = IPlayerInterface::Execute_FindLevelForXp(EffectParams.SourceCharacter, CurrentXp);
 
 			int32 UpLevel = CurrentLevel - Level;
+
+			//等级变化的奖励
 			if (UpLevel > 0)
 			{
 
 				int32 AttributePointsReward = 0;
 				int32 ShellPointsReward = 0;
 
+				//计算总共需要增加的点数
 				for (int32 i = 0; i < UpLevel; i++)
 				{
 					AttributePointsReward += IPlayerInterface::Execute_GetAttributePointReward(EffectParams.SourceCharacter, Level + i);
@@ -218,6 +221,7 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 				IPlayerInterface::Execute_AddToAttributePoint(EffectParams.SourceCharacter, AttributePointsReward);
 				IPlayerInterface::Execute_AddToShellPoint(EffectParams.SourceCharacter, ShellPointsReward);
 
+				//血量和魔法值回满 -> PostAttributeChange
 				bTopOffHealth = true;
 				bTopOffMana = true;
 			}
