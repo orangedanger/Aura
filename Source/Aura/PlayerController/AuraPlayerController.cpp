@@ -154,7 +154,7 @@ void AAuraPlayerController::AbilityInputTagPressed(FGameplayTag GameplayTag)
 void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag GameplayTag)
 {
 	//GEngine->AddOnScreenDebugMessage(2, 3.0f, FColor::Blue,*(FString("Released ") + GameplayTag.ToString()));
-//不是左键的功能激活其对应 的Ability
+	//不是左键的功能激活其对应 的Ability
 	if (!GameplayTag.MatchesTagExact(FAuraGameplayTags::Get().Ability_LMB))
 	{
 		if (GetASC())
@@ -163,8 +163,8 @@ void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag GameplayTag)
 		}
 		return;
 	}
-	//左键的功能
 
+	//左键的功能
 	if (bHitTarget)
 	{
 		//左键触碰其他角色的功能
