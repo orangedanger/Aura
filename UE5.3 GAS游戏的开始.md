@@ -546,7 +546,6 @@ void AAuraEffectActor::ApplyEffectToTarget(AActor* Target, TSubclassOf<UGameplay
 //Soure 是来限制可以捡起的某一种EffectActor数量
 //Target 是来限制Character可以捡起的数目
 
-
 //Stack Expiration Policy 对于捡起的对象过期后的处理方案
 	//Clear Enter Stack 一次性全部清空
 	//Remove Single Stack And Refresh Duration 一次掉一层剩下的继续重复生效
@@ -1495,7 +1494,6 @@ void UAuraAbilitySystemLibrary::InitDefaultAttribute(const UObject* WorldContext
 	VitalSpecHandle.AddSourceObject(AvatarActor);
 	const FGameplayEffectSpecHandle VitalAttributeSpecHandle = ASC->MakeOutgoingSpec(ClassInfo->VitalAttributes, level, VitalSpecHandle);
 	ASC->ApplyGameplayEffectSpecToSelf(*VitalAttributeSpecHandle.Data.Get());
-
 }
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------

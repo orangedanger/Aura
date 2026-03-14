@@ -22,6 +22,7 @@ AAuraCharacterBase::AAuraCharacterBase()
 	WeaponMesh = CreateDefaultSubobject<USkeletalMeshComponent>("WeaponMesh");
 	WeaponMesh->SetupAttachment(GetMesh(), FName("WeaponHandSocket"));
 	WeaponMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
 	GetMesh()->SetCollisionResponseToChannel(ECC_ProjectileChannel, ECollisionResponse::ECR_Overlap);
 }
 

@@ -20,7 +20,7 @@ AAuraCharacter::AAuraCharacter()
 	GetCharacterMovement()->RotationRate = FRotator(0.f, 400.f, 0.f);
 	//目的是是目标对齐到平面
 	GetCharacterMovement()->bSnapToPlaneAtStart = true;
-	GetCharacterMovement()->bConstrainToPlane = true;
+	GetCharacterMovement ()->bConstrainToPlane = true;
 	//通过Controller控制方向关闭
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationRoll = false;
