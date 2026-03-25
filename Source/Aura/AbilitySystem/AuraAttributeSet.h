@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -13,7 +13,7 @@
 	GAMEPLAYATTRIBUTE_VALUE_SETTER(PropertyName) \
 	GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
 
-//±ğÃûÄ£°å
+//åˆ«åæ¨¡æ¿
 template<class T>
 using TAttributePtr = typename TBaseStaticDelegateInstance<T, FDefaultDelegateUserPolicy>::FFuncPtr;
 
@@ -60,9 +60,9 @@ class AURA_API UAuraAttributeSet : public UAttributeSet
 public:
 	UAuraAttributeSet();
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-	//ÔÚAttributeµÄÖµĞŞ¸ÄÖ®Ç°µ÷ÓÃ
+	//åœ¨Attributeçš„å€¼ä¿®æ”¹ä¹‹å‰è°ƒç”¨
 	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue)override;
-	//ÔÚAttributeµÄÖµĞŞ¸ÄÖ®ºóµ÷ÓÃ
+	//åœ¨Attributeçš„å€¼ä¿®æ”¹ä¹‹åè°ƒç”¨
 	virtual void PostAttributeChange(const FGameplayAttribute& Attribute, float OldValue, float NewValue)override;
 	virtual void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data)override;
 
@@ -101,42 +101,42 @@ public:
 	*	Secondary Attribute
 	*/
 
-	//×î´óÉúÃüºÍÄ§Á¦
+	//æœ€å¤§ç”Ÿå‘½å’Œé­”åŠ›
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_MaxHealth, Category = "Secondary Attribute")
 	FGameplayAttributeData MaxHealth;
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_MaxMana, Category = "Secondary Attribute")
 	FGameplayAttributeData MaxMana;
 
-	//¹¥»÷Á¦
+	//æ”»å‡»åŠ›
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_PhysicalAttack, Category = "Secondary Attribute")
 	FGameplayAttributeData PhysicalAttack;
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_MagicalAttack, Category = "Secondary Attribute")
 	FGameplayAttributeData MagicalAttack;
-	//´©Í¸
+	//ç©¿é€
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_PhysicalPenetration, Category = "Secondary Attribute")
 	FGameplayAttributeData PhysicalPenetration;
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_MagicalPenetration, Category = "Secondary Attribute")
 	FGameplayAttributeData MagicalPenetration;
-	//±©»÷ÂÊºÍ±©»÷¼Ó³É
+	//æš´å‡»ç‡å’Œæš´å‡»åŠ æˆ
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_CriticalHitChance, Category = "Secondary Attribute")
 	FGameplayAttributeData CriticalHitChance;
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_CriticalHitBonus, Category = "Secondary Attribute")
 	FGameplayAttributeData CriticalHitBonus;
-	//·ÀÓù
+	//é˜²å¾¡
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_PhysicalDefense, Category = "Secondary Attribute")
 	FGameplayAttributeData PhysicalDefense;
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_MagicalDefense, Category = "Secondary Attribute")
 	FGameplayAttributeData MagicalDefense;
-	//ÉúÃü»Ö¸´
+	//ç”Ÿå‘½æ¢å¤
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_HealthRegeneration, Category = "Secondary Attribute")
 	FGameplayAttributeData HealthRegeneration;
-	//·¨Êõ»Ö¸´
+	//æ³•æœ¯æ¢å¤
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_ManaRegeneration, Category = "Secondary Attribute")
 	FGameplayAttributeData ManaRegeneration;
-	//ÃüÖĞ¼Ó³É
+	//å‘½ä¸­åŠ æˆ
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_HitBonus, Category = "Secondary Attribute")
 	FGameplayAttributeData HitBonus;
-	//ÉÁ±ÜÂÊ
+	//é—ªé¿ç‡
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Evade, Category = "Secondary Attribute")
 	FGameplayAttributeData Evade;
 	/**

@@ -1,4 +1,4 @@
-// Manages Blueprint event node creation
+﻿// Manages Blueprint event node creation
 #pragma once
 
 #include "CoreMinimal.h"

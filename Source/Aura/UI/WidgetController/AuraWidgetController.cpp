@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "AuraWidgetController.h"
@@ -28,20 +28,20 @@ void UAuraWidgetController::BroadcastCallbackToDependences()
 void UAuraWidgetController::BroadcastAbilityInfo()
 {
 	if (!GetAuraASC()->bStartAbilityDeleagte) return;
-	//TOOD: ÐèÒª¶ÔDataÖÐµÄInputTag½øÐÐÉèÖÃ,ÐèÒª¼¤»îµÄÄÜÁ¦£¬
+	//TOOD: éœ€è¦å¯¹Dataä¸­çš„InputTagè¿›è¡Œè®¾ç½®,éœ€è¦æ¿€æ´»çš„èƒ½åŠ›ï¼Œ
 
 	FForEachAbility BroadcastDelegate;
-	//°ó¶¨ (·¢ËÍInfoÊý¾Ýµ½À¶Í¼ÖÐ) Õâ¸ö¹¦ÄÜµ½BroadcastDelegate
+	//ç»‘å®š (å‘é€Infoæ•°æ®åˆ°è“å›¾ä¸­) è¿™ä¸ªåŠŸèƒ½åˆ°BroadcastDelegate
 	BroadcastDelegate.BindLambda(
 		[this](const FGameplayAbilitySpec& AbilitySpec)
 		{
 			FAuraAbilityInfo info = AbilityInfo.Get()->FindAbilityInfoByAbilityTag(AuraAbilitySystemComponent->GetAbilityTagByAbilitySpec(AbilitySpec));
 			info.InputTag = AuraAbilitySystemComponent->GetInputTagByAbilitySpec(AbilitySpec);
 			info.StateTag = AuraAbilitySystemComponent->GetStateTagByAbilitySpec(AbilitySpec);
-			//½«InfoÊý¾Ý·¢ËÍµ½À¶Í¼ÖÐ
+			//å°†Infoæ•°æ®å‘é€åˆ°è“å›¾ä¸­
 			OnAbilityInfoSingnature.Broadcast(info);
 		});
-	//Ö´ÐÐÕâ¸öÎ¯ÍÐµÄ¹¦ÄÜ
+	//æ‰§è¡Œè¿™ä¸ªå§”æ‰˜çš„åŠŸèƒ½
 	GetAuraASC()->ForEachAbility(BroadcastDelegate);
 }
 

@@ -1,4 +1,4 @@
-// Header for creating animation nodes (Timeline)
+﻿// Header for creating animation nodes (Timeline)
 
 #pragma once
 

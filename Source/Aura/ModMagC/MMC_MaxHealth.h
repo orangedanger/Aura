@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -19,6 +19,6 @@ public:
 	virtual float CalculateBaseMagnitude_Implementation(const FGameplayEffectSpec& Spec) const override;
 
 private:
-	//²¶»ñÓÎÏ·ÊôĞÔ
+	//æ•è·æ¸¸æˆå±æ€§
 	FGameplayEffectAttributeCaptureDefinition VigourDef;
 };

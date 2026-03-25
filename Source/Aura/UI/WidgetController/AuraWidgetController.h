@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -48,10 +48,10 @@ public:
 	void SetWidgetControllerParams(const FWidgetControllerParams& WCParams);
 	UFUNCTION(BlueprintCallable)
 
-	//Ä³Ğ©Î¯ÍĞÊı¾İ½øĞĞ³õÊ¼»¯²¥±¨
+	//æŸäº›å§”æ‰˜æ•°æ®è¿›è¡Œåˆå§‹åŒ–æ’­æŠ¥
 	virtual void InitBroadcast();
 
-	//ÓÃÓÚ°ó¶¨Î¯ÍĞµ½¾ßÌå¹¦ÄÜº¯Êı
+	//ç”¨äºç»‘å®šå§”æ‰˜åˆ°å…·ä½“åŠŸèƒ½å‡½æ•°
 	virtual void BroadcastCallbackToDependences();
 
 	void BroadcastAbilityInfo();

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -38,10 +38,10 @@ public:
 
 
 	/**
-	 * ±éÀúËùÓĞ¿É¼¤»îµÄ GameplayAbility£¬²¢¶ÔÃ¿¸öÄÜÁ¦Ö´ĞĞ´«ÈëµÄÎ¯ÍĞ¡£
+	 * éå†æ‰€æœ‰å¯æ¿€æ´»çš„ GameplayAbilityï¼Œå¹¶å¯¹æ¯ä¸ªèƒ½åŠ›æ‰§è¡Œä¼ å…¥çš„å§”æ‰˜ã€‚
 	 *
-	 * @param Delegate ½ÓÊÜÒ»¸ö FGameplayAbilitySpec ²ÎÊıµÄ»Øµ÷º¯Êı£¬ÓÃÓÚ´¦ÀíÃ¿¸öÄÜÁ¦¡£
-	 *                 ÈôÎ¯ÍĞ·µ»Ø `false`£¬ÔòÍ£Ö¹±éÀú¡£
+	 * @param Delegate æ¥å—ä¸€ä¸ª FGameplayAbilitySpec å‚æ•°çš„å›è°ƒå‡½æ•°ï¼Œç”¨äºå¤„ç†æ¯ä¸ªèƒ½åŠ›ã€‚
+	 *                 è‹¥å§”æ‰˜è¿”å› `false`ï¼Œåˆ™åœæ­¢éå†ã€‚
 	 */
 	void ForEachAbility(FForEachAbility Delegate);
 

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -34,10 +34,10 @@ protected:
 
 	void Move(const FInputActionValue& InputValue);
 
-	//¼ì²âÊÇ·ñÊó±êÖ¸µ½µĞÈË
+	//æ£€æµ‹æ˜¯å¦é¼ æ ‡æŒ‡åˆ°æ•Œäºº
 	void CursorEnemy();
 
-	//Ability°´¼ü´¥·¢º¯Êı
+	//AbilityæŒ‰é”®è§¦å‘å‡½æ•°
 	void AbilityInputTagPressed(FGameplayTag GameplayTag);
 	void AbilityInputTagReleased(FGameplayTag GameplayTag);
 	void AbilityInputTagHeld(FGameplayTag GameplayTag);
@@ -69,7 +69,7 @@ private:
 	UPROPERTY(EditAnywhere)
 	float StopRuningRadius = 50.f;
 
-	//ÊÇ·ñÊó±êÅöµ½ÆäËû½ÇÉ«¶ø²»ÊÇµØµã£¬´¥Åöµ½ÆäËû½ÇÉ«Îªtrue
+	//æ˜¯å¦é¼ æ ‡ç¢°åˆ°å…¶ä»–è§’è‰²è€Œä¸æ˜¯åœ°ç‚¹ï¼Œè§¦ç¢°åˆ°å…¶ä»–è§’è‰²ä¸ºtrue
 	bool bHitTarget = false;
 	bool bAutoRuning = false;
 

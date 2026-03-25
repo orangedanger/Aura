@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "AuraCharacterBase.h"
 #include "AbilitySystemComponent.h"
@@ -113,7 +113,7 @@ void AAuraCharacterBase::GrantGameplayAbilities()
 {
 	UAuraAbilitySystemComponent* AuraASC = CastChecked<UAuraAbilitySystemComponent>(AbilitySystemComponement);
 
-	//Ability±ØĞëÔÚ·şÎñ¶ËÉÏ±»ÊÚÈ¨
+	//Abilityå¿…é¡»åœ¨æœåŠ¡ç«¯ä¸Šè¢«æˆæƒ
 	if (!HasAuthority())
 	{
 		return;

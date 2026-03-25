@@ -1,4 +1,4 @@
-// Connects two Blueprint nodes via their pins
+﻿// Connects two Blueprint nodes via their pins
 #pragma once
 
 #include "CoreMinimal.h"

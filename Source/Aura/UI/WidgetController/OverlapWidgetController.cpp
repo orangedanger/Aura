@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "OverlapWidgetController.h"
@@ -9,10 +9,10 @@
 #include"Aura/AuraGameplayTags.h"
 
 
-//½«Êý¾Ý½øÐÐ³õÊ¼»¯¸³ÖµµÄµØ·½
+//å°†æ•°æ®è¿›è¡Œåˆå§‹åŒ–èµ‹å€¼çš„åœ°æ–¹
 void UOverlapWidgetController::InitBroadcast()
 {
-	//Éú³ÉOverlapÊ±Í¬Ê±³õÊ¼»¯
+	//ç”ŸæˆOverlapæ—¶åŒæ—¶åˆå§‹åŒ–
 	OnHealthChanged.Broadcast(GetAuraAS()->GetHealth());
 	OnMaxHealthChanged.Broadcast(GetAuraAS()->GetMaxHealth());
 	OnManaChanged.Broadcast(GetAuraAS()->GetMana());
@@ -29,38 +29,38 @@ void UOverlapWidgetController::BroadcastCallbackToDependences()
 
 	if (GetAuraASC())
 	{
-		//°ó¶¨Lambda±í´ïÊ½
+		//ç»‘å®šLambdaè¡¨è¾¾å¼
 		GetAuraASC()->AssertTag.AddLambda(
-			//ÕâÀïµÄthisÊÇÔÚLambdaº¯ÊýÖÐ³öÏÖÀàÖÐµÄ³ÉÔ±Ê±ÐèÒªµÄ
+			//è¿™é‡Œçš„thisæ˜¯åœ¨Lambdaå‡½æ•°ä¸­å‡ºçŽ°ç±»ä¸­çš„æˆå‘˜æ—¶éœ€è¦çš„
 			[this](const FGameplayTagContainer& Container)
 			{
 				for (const FGameplayTag& Tags : Container)
 				{
-					//ÅÐ¶ÏTagsÊÇ·ñÂú×ã MessageTag
+					//åˆ¤æ–­Tagsæ˜¯å¦æ»¡è¶³ MessageTag
 					//"Message.HealthPotion".MatchesTag("Message") will return True, 
 					//"Message".MatchesTag("Message.HealthPotion") will return False
-					//É¸Ñ¡³öMessageµÄTag
+					//ç­›é€‰å‡ºMessageçš„Tag
 					FGameplayTag MessageTag = FGameplayTag::RequestGameplayTag(FName("Message"));
 					if (Tags.MatchesTag(MessageTag))
 					{
 						checkf(MessageDataTable, TEXT("Please Set MessageDataTable in BP_OverlapWidgetController First"));
-						//Ñ°ÕÒ¶ÔÓ¦µÄRow
+						//å¯»æ‰¾å¯¹åº”çš„Row
 						FUIWidgetData* WidgetData = MessageDataTable->FindRow<FUIWidgetData>(Tags.GetTagName(), TEXT(""));
-						//ÔÚUEÀ¶Í¼ÖÐÓÐ¸öÊÂ¼þÀ´ÈÃÆä´¥·¢,À´Éú³ÉÏàÓ¦µÄWidgetºÍÍ¼Æ¬
+						//åœ¨UEè“å›¾ä¸­æœ‰ä¸ªäº‹ä»¶æ¥è®©å…¶è§¦å‘,æ¥ç”Ÿæˆç›¸åº”çš„Widgetå’Œå›¾ç‰‡
 						OnMessageWidgetSingnature.Broadcast(*WidgetData);
 					}
 				}
 			}
 		);
 
-		//ÊÇ·ñ°ó¶¨¹ý
+		//æ˜¯å¦ç»‘å®šè¿‡
 		if (GetAuraASC()->bStartAbilityDeleagte)
 		{
 			BroadcastAbilityInfo();
 		}
 		else
 		{
-			//Ability°ó¶¨Î¯ÍÐ
+			//Abilityç»‘å®šå§”æ‰˜
 			GetAuraASC()->AbilityDeleagte.AddUObject(this, &UOverlapWidgetController::BroadcastAbilityInfo);
 		}
 	}
@@ -95,14 +95,14 @@ void UOverlapWidgetController::MaxManaChange(const FOnAttributeChangeData& Date)
 
 void UOverlapWidgetController::OnXpChange(int32 NewXp)
 {
-	//»ñÈ¡ÏÖÔÚµÈ¼¶
+	//èŽ·å–çŽ°åœ¨ç­‰çº§
 	UXpRewardData* XpRewardData = GetAuraPS()->XpData;
 	checkf(XpRewardData, TEXT("Please Put XpData In BP_AuraPlayerState"));
 
 	float Percent;
 	const int32 Level = XpRewardData->FindLevelAtXp(NewXp);
 
-	//Èç¹ûµÈ¼¶ÒÑ¾­µ½×î¸ßÁË
+	//å¦‚æžœç­‰çº§å·²ç»åˆ°æœ€é«˜äº†
 	if (Level == XpRewardData->XpRewardDataArray.Num())
 	{
 		Percent = 1.f;

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "AuraAttributeSet.h"
 #include "Net/UnrealNetwork.h"
@@ -110,11 +110,11 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 	FGameplayEffectParams EffectParams;
 
 	SetGameplayEffectPramars(Data, EffectParams);
-	//Ô¤´¦Àíº¯ÊıÖĞÖµĞŞ¸ÄÈÔÒªÔÚÓ¦ÓÃÊ±½øĞĞĞŞ¸Ä
+	//é¢„å¤„ç†å‡½æ•°ä¸­å€¼ä¿®æ”¹ä»è¦åœ¨åº”ç”¨æ—¶è¿›è¡Œä¿®æ”¹
 
 
 
-	//ÑªÁ¿±ä»¯
+	//è¡€é‡å˜åŒ–
 	if (Data.EvaluatedData.Attribute == GetHealthAttribute())
 	{
 		SetHealth(FMath::Clamp(GetHealth(), 0, GetMaxHealth()));
@@ -122,14 +122,14 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 		
 	}
 
-	//Ä§Á¦±ä»¯
+	//é­”åŠ›å˜åŒ–
 	if (Data.EvaluatedData.Attribute == GetManaAttribute())
 	{
 		SetMana(FMath::Clamp(GetMana(), 0, GetMaxMana()));
 	}
 	
 
-	//ÉËº¦±ä»¯
+	//ä¼¤å®³å˜åŒ–
 	if (Data.EvaluatedData.Attribute == GetIncomingDamageAttribute())
 	{
 		const float LocalIncomingDamage = GetIncomingDamage();
@@ -141,7 +141,7 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 
 		if (LocalIncomingDamage > 0.f)
 		{
-			//»ñÈ¡boolÊôĞÔ
+			//è·å–boolå±æ€§
 			const FGameplayEffectContextHandle EffectContextHandle = Data.EffectSpec.GetContext();
 			const FAuraGameplayEffectContext* AuraEffectContext = static_cast<const FAuraGameplayEffectContext*>(EffectContextHandle.Get());
 			const bool bEvade = AuraEffectContext->IsEvade();
@@ -154,7 +154,7 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 			}
 
 			SetHealth(FMath::Clamp(NewHealth, 0.f, GetMaxHealth()));
-			//ÅĞ¶ÏÊÇ·ñËÀÍö
+			//åˆ¤æ–­æ˜¯å¦æ­»äº¡
 			bool bDeath = NewHealth <= 0.f;
 
 			if (!bDeath)
@@ -165,7 +165,7 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 					{
 						ICombatInterface* CombatInterface = Cast<ICombatInterface>(EffectParams.TargetCharacter);
 						EffectParams.TargetCharacter->StopAnimMontage(CombatInterface->Execute_GetHitReactMontage(EffectParams.TargetCharacter));
-						//²¥·ÅÊÜ»÷¶¯»­
+						//æ’­æ”¾å—å‡»åŠ¨ç”»
 						FGameplayTagContainer TagContainer;
 						TagContainer.AddTag(FAuraGameplayTags::Get().Combat_HitReact);
 						EffectParams.TargetASC->TryActivateAbilitiesByTag(TagContainer);
@@ -174,7 +174,7 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 			}
 			else
 			{
-				//ËÀÍö¶¯»­
+				//æ­»äº¡åŠ¨ç”»
 				ICombatInterface* CombatInterface = CastChecked<ICombatInterface>(EffectParams.TargetAvatarActor);
 				if (CombatInterface)
 				{
@@ -183,7 +183,7 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 				SendXpEvent(EffectParams);
 			}
 
-			//ÏÔÊ¾¸¡¶¯×ÖÌå
+			//æ˜¾ç¤ºæµ®åŠ¨å­—ä½“
 			ShowFloatingText(EffectParams, LocalIncomingDamage, bCriticalHit, bEvade);
 		}
 	}
@@ -192,7 +192,7 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 	{
 		const int32 LocalIncomingXp = GetIncomingXp();
 		SetIncomingXp(0);
-		//ÉèÖÃPlayerStateÖĞµÄ¾­ÑéÖµ
+		//è®¾ç½®PlayerStateä¸­çš„ç»éªŒå€¼
 		if (EffectParams.SourceCharacter->Implements<UPlayerInterface>()&&EffectParams.SourceCharacter->Implements<UCombatInterface>())
 		{
 			const int32 Level = ICombatInterface::Execute_GetPlayerLevel(EffectParams.SourceCharacter);
@@ -202,14 +202,14 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 
 			int32 UpLevel = CurrentLevel - Level;
 
-			//µÈ¼¶±ä»¯µÄ½±Àø
+			//ç­‰çº§å˜åŒ–çš„å¥–åŠ±
 			if (UpLevel > 0)
 			{
 
 				int32 AttributePointsReward = 0;
 				int32 ShellPointsReward = 0;
 
-				//¼ÆËã×Ü¹²ĞèÒªÔö¼ÓµÄµãÊı
+				//è®¡ç®—æ€»å…±éœ€è¦å¢åŠ çš„ç‚¹æ•°
 				for (int32 i = 0; i < UpLevel; i++)
 				{
 					AttributePointsReward += IPlayerInterface::Execute_GetAttributePointReward(EffectParams.SourceCharacter, Level + i);
@@ -221,7 +221,7 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 				IPlayerInterface::Execute_AddToAttributePoint(EffectParams.SourceCharacter, AttributePointsReward);
 				IPlayerInterface::Execute_AddToShellPoint(EffectParams.SourceCharacter, ShellPointsReward);
 
-				//ÑªÁ¿ºÍÄ§·¨Öµ»ØÂú -> PostAttributeChange
+				//è¡€é‡å’Œé­”æ³•å€¼å›æ»¡ -> PostAttributeChange
 				bTopOffHealth = true;
 				bTopOffMana = true;
 			}
@@ -232,24 +232,24 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 
 void UAuraAttributeSet::SendXpEvent(FGameplayEffectParams& Props)
 {
-	// µ±µĞÈËËÀÍöÊ±´¥·¢µÄÊÂ¼ş£¬»ñÈ¡¾­ÑéÖµ²¢·¢ËÍ¸øÍæ¼Ò
-	// Target ÊÇµĞÈË£¬´ÓµĞÈËÖĞ»ñÈ¡¾­ÑéÖµ
+	// å½“æ•Œäººæ­»äº¡æ—¶è§¦å‘çš„äº‹ä»¶ï¼Œè·å–ç»éªŒå€¼å¹¶å‘é€ç»™ç©å®¶
+	// Target æ˜¯æ•Œäººï¼Œä»æ•Œäººä¸­è·å–ç»éªŒå€¼
 	if (Props.TargetAvatarActor->Implements<UCombatInterface>())
 	{
-		// »ñÈ¡µĞÈËµÄµÈ¼¶
+		// è·å–æ•Œäººçš„ç­‰çº§
 		const float TargetLevel = ICombatInterface::Execute_GetPlayerLevel(Props.TargetAvatarActor);
-		// »ñÈ¡µĞÈËµÄ½ÇÉ«ÀàĞÍ
+		// è·å–æ•Œäººçš„è§’è‰²ç±»å‹
 		const ECharacterClass TargetCharacterClass = ICombatInterface::Execute_GetCharacterClass(Props.SourceCharacter);
 
-		// »ñÈ¡ÓÎÏ·±êÇ©
+		// è·å–æ¸¸æˆæ ‡ç­¾
 		const FAuraGameplayTags GameplayTags = FAuraGameplayTags::Get();
 		FGameplayEventData Payload;
-		// ÉèÖÃÊÂ¼ş±êÇ©Îª»ñÈ¡¾­ÑéÖµ
+		// è®¾ç½®äº‹ä»¶æ ‡ç­¾ä¸ºè·å–ç»éªŒå€¼
 		Payload.EventTag = GameplayTags.Attribute_Meta_IncomingXp;
-		// ¼ÆËã²¢  ÉèÖÃÊÂ¼şµÄ¾­ÑéÖµ´óĞ¡
+		// è®¡ç®—å¹¶  è®¾ç½®äº‹ä»¶çš„ç»éªŒå€¼å¤§å°
 		Payload.EventMagnitude = UAuraAbilitySystemLibrary::GetRewardXpForClassAndLevel(Props.TargetAvatarActor, TargetLevel, TargetCharacterClass);
 
-		// ·¢ËÍÓÎÏ·ÊÂ¼ş¸øÍæ¼Ò£¬´«µİ¾­ÑéÖµ
+		// å‘é€æ¸¸æˆäº‹ä»¶ç»™ç©å®¶ï¼Œä¼ é€’ç»éªŒå€¼
 		UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(Props.SourceCharacter, Payload.EventTag, Payload);
 	}
 }
@@ -316,7 +316,7 @@ void UAuraAttributeSet::SetGameplayEffectPramars(const FGameplayEffectModCallbac
 	}
 }
 
-//GAMEPLAYATTRIBUTE_REPNOTIFYÕâ¸öºêÓÃÓÚRepNotifyº¯ÊıÖĞ£¬ÔÚ¿Í»§¶ËÖĞĞŞ¸ÄÊôĞÔ
+//GAMEPLAYATTRIBUTE_REPNOTIFYè¿™ä¸ªå®ç”¨äºRepNotifyå‡½æ•°ä¸­ï¼Œåœ¨å®¢æˆ·ç«¯ä¸­ä¿®æ”¹å±æ€§
 
 void UAuraAttributeSet::OnRep_Health(const FGameplayAttributeData& OldHealth)const
 {

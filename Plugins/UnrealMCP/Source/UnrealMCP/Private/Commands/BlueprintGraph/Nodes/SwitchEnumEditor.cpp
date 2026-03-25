@@ -1,4 +1,4 @@
-#include "Commands/BlueprintGraph/Nodes/SwitchEnumEditor.h"
+﻿#include "Commands/BlueprintGraph/Nodes/SwitchEnumEditor.h"
 #include "K2Node_SwitchEnum.h"
 #include "EdGraph/EdGraph.h"
 #include "EdGraph/EdGraphNode.h"

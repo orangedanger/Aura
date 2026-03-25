@@ -1,4 +1,4 @@
-// Manages Blueprint function lifecycle (create, delete, rename)
+﻿// Manages Blueprint function lifecycle (create, delete, rename)
 
 #pragma once
 

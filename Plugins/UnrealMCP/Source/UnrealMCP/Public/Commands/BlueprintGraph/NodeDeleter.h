@@ -1,4 +1,4 @@
-// Manages Blueprint node deletion
+﻿// Manages Blueprint node deletion
 #pragma once
 
 #include "CoreMinimal.h"

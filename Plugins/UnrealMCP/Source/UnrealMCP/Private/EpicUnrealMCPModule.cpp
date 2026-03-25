@@ -1,4 +1,4 @@
-#include "EpicUnrealMCPModule.h"
+﻿#include "EpicUnrealMCPModule.h"
 #include "EpicUnrealMCPBridge.h"
 #include "Modules/ModuleManager.h"
 #include "EditorSubsystem.h"

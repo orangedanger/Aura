@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "AuraAbilitySystemComponent.h"
@@ -34,15 +34,15 @@ void UAuraAbilitySystemComponent::GrantGameplayAbilities(const TArray<TSubclassO
 
 		if (const UAuraGameplayAbility* GameplayAbility = Cast<UAuraGameplayAbility>(AbilitySpec.Ability))
 		{
-			//½øĞĞ±êÇ©µÄ°ó¶¨,×Ô¶¨ÒåµÄTag¼ÓÈëµ½AbilityµÄ¶¯Ì¬±êÇ©ÖĞ
+			//è¿›è¡Œæ ‡ç­¾çš„ç»‘å®š,è‡ªå®šä¹‰çš„TagåŠ å…¥åˆ°Abilityçš„åŠ¨æ€æ ‡ç­¾ä¸­
 			AbilitySpec.DynamicAbilityTags.AddTag(GameplayAbility->InputGameplayTag);
 			AbilitySpec.DynamicAbilityTags.AddTag(FAuraGameplayTags::Get().Spell_State_Equipped);
 
-			//½«Ability¸³Óè¸øÏàÓ¦µÄ½ÇÉ«
+			//å°†Abilityèµ‹äºˆç»™ç›¸åº”çš„è§’è‰²
 			GiveAbility(AbilitySpec);
 		}
 	}
-	//³õÊ¼»¯UI AbilityÏÔÊ¾
+	//åˆå§‹åŒ–UI Abilityæ˜¾ç¤º
 	bStartAbilityDeleagte = true;
 	AbilityDeleagte.Broadcast();
 }
@@ -85,7 +85,7 @@ void UAuraAbilitySystemComponent::AbilityInputTagReleased(const FGameplayTag& In
 	{
 		if (AbilitySpec.DynamicAbilityTags.HasTagExact(InputTag))
 		{
-			//µ÷ÓÃInstance->InputReleasedº¯Êı £¬InputReleasedº¯Êı¹¦ÄÜĞèÒªÖØĞ´
+			//è°ƒç”¨Instance->InputReleasedå‡½æ•° ï¼ŒInputReleasedå‡½æ•°åŠŸèƒ½éœ€è¦é‡å†™
 			AbilitySpecInputReleased(AbilitySpec);
 		}
 	}
@@ -93,19 +93,19 @@ void UAuraAbilitySystemComponent::AbilityInputTagReleased(const FGameplayTag& In
 
 void UAuraAbilitySystemComponent::ForEachAbility(FForEachAbility Delegate)
 {
-	// Ê¹ÓÃ×÷ÓÃÓòËø£¨Scoped Lock£©Ëø¶¨µ±Ç° Ability ÁĞ±í£¬È·±£±éÀú¹ı³ÌÖĞÁĞ±í²»»á±»ĞŞ¸Ä¡£
-	// ÕâÊÇÎªÁË±ÜÃâÔÚµü´ú¹ı³ÌÖĞÒòÆäËûÏß³Ì»òÂß¼­ĞŞ¸Ä Ability ÁĞ±íµ¼ÖÂµÄÊı¾İ¾ºÕù»ò²»Ò»ÖÂĞÔ¡£
+	// ä½¿ç”¨ä½œç”¨åŸŸé”ï¼ˆScoped Lockï¼‰é”å®šå½“å‰ Ability åˆ—è¡¨ï¼Œç¡®ä¿éå†è¿‡ç¨‹ä¸­åˆ—è¡¨ä¸ä¼šè¢«ä¿®æ”¹ã€‚
+	// è¿™æ˜¯ä¸ºäº†é¿å…åœ¨è¿­ä»£è¿‡ç¨‹ä¸­å› å…¶ä»–çº¿ç¨‹æˆ–é€»è¾‘ä¿®æ”¹ Ability åˆ—è¡¨å¯¼è‡´çš„æ•°æ®ç«äº‰æˆ–ä¸ä¸€è‡´æ€§ã€‚
 	FScopedAbilityListLock ScopedAbilityListLock(*this);
 
-	// ±éÀúËùÓĞ¿É¼¤»îµÄ Ability£¨Í¨¹ı GetActivatableAbilities »ñÈ¡ÁĞ±í£©
+	// éå†æ‰€æœ‰å¯æ¿€æ´»çš„ Abilityï¼ˆé€šè¿‡ GetActivatableAbilities è·å–åˆ—è¡¨ï¼‰
 	for (const FGameplayAbilitySpec& AbilitySpec : GetActivatableAbilities())
 	{
-		// Ö´ĞĞÎ¯ÍĞ£¬½«µ±Ç° AbilitySpec ×÷Îª²ÎÊı´«µİ¡£
-		// ExecuteIfBound ·µ»Ø `false` ±íÊ¾Î¯ÍĞÎ´°ó¶¨»òÖ´ĞĞÊ§°Ü¡£
+		// æ‰§è¡Œå§”æ‰˜ï¼Œå°†å½“å‰ AbilitySpec ä½œä¸ºå‚æ•°ä¼ é€’ã€‚
+		// ExecuteIfBound è¿”å› `false` è¡¨ç¤ºå§”æ‰˜æœªç»‘å®šæˆ–æ‰§è¡Œå¤±è´¥ã€‚
 		if (!Delegate.ExecuteIfBound(AbilitySpec))
 		{
-			// ¼ÇÂ¼´íÎóÈÕÖ¾£ºÊä³öµ±Ç°º¯ÊıÃû£¨__FUNCTION__£©ºÍÎ¯ÍĞÖ´ĞĞÊ§°ÜµÄĞÅÏ¢¡£
-			// ×¢Òâ£ºUE_LOG µÄ¸ñÊ½»¯×Ö·û´®ÖĞ£¬%hs ±íÊ¾ ANSI ×Ö·û´®£¨__FUNCTION__ ÊÇ±àÒëÆ÷ºê£¬·µ»Øµ±Ç°º¯ÊıÃû£©¡£
+			// è®°å½•é”™è¯¯æ—¥å¿—ï¼šè¾“å‡ºå½“å‰å‡½æ•°åï¼ˆ__FUNCTION__ï¼‰å’Œå§”æ‰˜æ‰§è¡Œå¤±è´¥çš„ä¿¡æ¯ã€‚
+			// æ³¨æ„ï¼šUE_LOG çš„æ ¼å¼åŒ–å­—ç¬¦ä¸²ä¸­ï¼Œ%hs è¡¨ç¤º ANSI å­—ç¬¦ä¸²ï¼ˆ__FUNCTION__ æ˜¯ç¼–è¯‘å™¨å®ï¼Œè¿”å›å½“å‰å‡½æ•°åï¼‰ã€‚
 			UE_LOG(AuraLog, Error, TEXT("Failed to execute delegate in function [%hs]"), __FUNCTION__);
 		}
 	}
@@ -180,18 +180,18 @@ void UAuraAbilitySystemComponent::UpdataAbilitiesState(int InLevel)
 	
 	for (auto& Info : AbilityInfo->AbilityInfomation)
 	{
-		//Èç¹û¼¼ÄÜĞèÇóµÈ¼¶Ğ¡ÓÚµ±Ç°µÈ¼¶
+		//å¦‚æœæŠ€èƒ½éœ€æ±‚ç­‰çº§å°äºå½“å‰ç­‰çº§
 		if (Info.RequiredLevel <= InLevel)
 		{
-			//¼ì²âµ±Ç°AbilityÊÇ·ñÔÚ¼¤»îµÄAbilityÖĞ
+			//æ£€æµ‹å½“å‰Abilityæ˜¯å¦åœ¨æ¿€æ´»çš„Abilityä¸­
 			if (GetAbilitySpecFromAbilityTag(Info.AbilityTag) ==nullptr)
 			{
-				//Èç¹ûÕâ¸öAbility²»´¦ÓÚ¼¤»î×´Ì¬¾Í¼¤»îËü
+				//å¦‚æœè¿™ä¸ªAbilityä¸å¤„äºæ¿€æ´»çŠ¶æ€å°±æ¿€æ´»å®ƒ
 				FGameplayAbilitySpec AbilitySpec = FGameplayAbilitySpec(Info.Ability, 1);
 				AbilitySpec.DynamicAbilityTags.AddTag(FAuraGameplayTags::Get().Spell_State_Eligible);
 				GiveAbility(AbilitySpec);
 
-				//¶ÔÓÚĞŞ¸ÄAbilitySpecµÄĞĞÎªĞèÒª¶ÔÆä½øĞĞMarkÀ´Í¬²½¿Í»§¶ËĞÅÏ¢
+				//å¯¹äºä¿®æ”¹AbilitySpecçš„è¡Œä¸ºéœ€è¦å¯¹å…¶è¿›è¡ŒMarkæ¥åŒæ­¥å®¢æˆ·ç«¯ä¿¡æ¯
 				MarkAbilitySpecDirty(AbilitySpec);
 
 				ClientAbilityStateChange(Info.AbilityTag, FAuraGameplayTags::Get().Spell_State_Eligible);
@@ -210,7 +210,7 @@ void UAuraAbilitySystemComponent::OnRep_ActivateAbilities()
 {
 	Super::OnRep_ActivateAbilities();
 
-	//¿Í»§¶ËÊµÏÖ
+	//å®¢æˆ·ç«¯å®ç°
 	if (!bStartAbilityDeleagte)
 	{
 		bStartAbilityDeleagte = true;

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "AuraPlayerController.h"
 #include "EnhancedInputSubsystems.h"
@@ -27,7 +27,7 @@ void AAuraPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
 
-	//°ó¶¨ÔöÇ¿Êä³ö×é¼ş
+	//ç»‘å®šå¢å¼ºè¾“å‡ºç»„ä»¶
 	check(Context);
 	UEnhancedInputLocalPlayerSubsystem* Subsytem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
 	if (Subsytem)
@@ -35,11 +35,11 @@ void AAuraPlayerController::BeginPlay()
 		Subsytem->AddMappingContext(Context, 0);
 	}
 
-	//Êó±êÑùÊ½
+	//é¼ æ ‡æ ·å¼
 	bShowMouseCursor = true;
 	DefaultMouseCursor = EMouseCursor::Default;
 
-	//Êó±ê¿ØÖÆºÍÊó±êµÄÏÔÊ¾
+	//é¼ æ ‡æ§åˆ¶å’Œé¼ æ ‡çš„æ˜¾ç¤º
 	FInputModeGameAndUI InputDate;
 	InputDate.SetHideCursorDuringCapture(false);
 	InputDate.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
@@ -50,9 +50,9 @@ void AAuraPlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
 
-	//»ñÈ¡ÔöÇ¿ÊäÈë×é¼ş
+	//è·å–å¢å¼ºè¾“å…¥ç»„ä»¶
 	UAuraInputComponent* AuraInputComponent = CastChecked<UAuraInputComponent>(InputComponent);
-	//Ôö¼Ó°ó¶¨
+	//å¢åŠ ç»‘å®š
 	AuraInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AAuraPlayerController::Move);
 
 	AuraInputComponent->BindAbilityAction(InputConfig, this, &AAuraPlayerController::AbilityInputTagPressed, &AAuraPlayerController::AbilityInputTagReleased, &AAuraPlayerController::AbilityInputTagHeld);
@@ -93,31 +93,31 @@ void AAuraPlayerController::CursorEnemy()
 	ThisInterface = Cast<IEnemyInterface>(HitResult.GetActor());
 
 	/**
-	* ¼ì²âµÄ¶àÖÖÇé¿ö
+	* æ£€æµ‹çš„å¤šç§æƒ…å†µ
 	*	- 1.LastInterface = null , ThisInterface = null
-	*			Ê²Ã´¶¼²»×ö
+	*			ä»€ä¹ˆéƒ½ä¸åš
 	*
 	*	- 2.LastInterface = null , ThisInterface is value
-	*			ThisInterfaceÏÔÊ¾¸ßÁÁHighLight
+	*			ThisInterfaceæ˜¾ç¤ºé«˜äº®HighLight
 	*
 	*	- 3.LastInterface is value , ThisInterface is null
-	*			LastInterfaceÈ¡ÏûÏÔÊ¾¸ßÁÁ UnHighLight
+	*			LastInterfaceå–æ¶ˆæ˜¾ç¤ºé«˜äº® UnHighLight
 	*
 	*	- 4.LastInterface is value , ThisInterface is value , but LastInterface !=ThisInterface
-	*			È¡ÏûLastInterface¸ßÁÁ£¬ÏÔÊ¾ThisInterface¸ßÁÁ
+	*			å–æ¶ˆLastInterfaceé«˜äº®ï¼Œæ˜¾ç¤ºThisInterfaceé«˜äº®
 	*
 	*	-5.LastInterface is value and ThisInterface == LastInterface
-	*			Ê²Ã´¶¼²»×ö
+	*			ä»€ä¹ˆéƒ½ä¸åš
 	**/
 	if (LastInterface == nullptr)
 	{
 		if (ThisInterface == nullptr)
 		{
-			//1. Ê²Ã´¶¼²»×ö
+			//1. ä»€ä¹ˆéƒ½ä¸åš
 		}
 		else
 		{
-			//2.ThisInterfaceÏÔÊ¾¸ßÁÁHighLight
+			//2.ThisInterfaceæ˜¾ç¤ºé«˜äº®HighLight
 			ThisInterface->HighLightAction();
 		}
 	}
@@ -125,20 +125,20 @@ void AAuraPlayerController::CursorEnemy()
 	{
 		if (ThisInterface == nullptr)
 		{
-			//3.LastInterfaceÈ¡ÏûÏÔÊ¾¸ßÁÁ UnHighLight
+			//3.LastInterfaceå–æ¶ˆæ˜¾ç¤ºé«˜äº® UnHighLight
 			LastInterface->UnHighLightAction();
 		}
 		else
 		{
 			if (ThisInterface != LastInterface)
 			{
-				//4.È¡ÏûLastInterface¸ßÁÁ£¬ÏÔÊ¾ThisInterface¸ßÁÁ
+				//4.å–æ¶ˆLastInterfaceé«˜äº®ï¼Œæ˜¾ç¤ºThisInterfaceé«˜äº®
 				LastInterface->UnHighLightAction();
 				ThisInterface->HighLightAction();
 			}
 			else
 			{
-				//5.Ê²Ã´¶¼²»×ö
+				//5.ä»€ä¹ˆéƒ½ä¸åš
 			}
 		}
 	}
@@ -154,7 +154,7 @@ void AAuraPlayerController::AbilityInputTagPressed(FGameplayTag GameplayTag)
 void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag GameplayTag)
 {
 	//GEngine->AddOnScreenDebugMessage(2, 3.0f, FColor::Blue,*(FString("Released ") + GameplayTag.ToString()));
-	//²»ÊÇ×ó¼üµÄ¹¦ÄÜ¼¤»îÆä¶ÔÓ¦ µÄAbility
+	//ä¸æ˜¯å·¦é”®çš„åŠŸèƒ½æ¿€æ´»å…¶å¯¹åº” çš„Ability
 	if (!GameplayTag.MatchesTagExact(FAuraGameplayTags::Get().Ability_LMB))
 	{
 		if (GetASC())
@@ -164,10 +164,10 @@ void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag GameplayTag)
 		return;
 	}
 
-	//×ó¼üµÄ¹¦ÄÜ
+	//å·¦é”®çš„åŠŸèƒ½
 	if (bHitTarget)
 	{
-		//×ó¼ü´¥ÅöÆäËû½ÇÉ«µÄ¹¦ÄÜ
+		//å·¦é”®è§¦ç¢°å…¶ä»–è§’è‰²çš„åŠŸèƒ½
 		if (GetASC())
 		{
 			GetASC()->AbilityInputTagHeld(GameplayTag);
@@ -178,10 +178,10 @@ void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag GameplayTag)
 	{
 		APawn* ControlledPawn = GetPawn();
 
-		//Í¨¹ı°´×¡µÄÊ±¼ä³¤¶Ì¾ö¶¨ÊÇ·ñ´¥·¢
+		//é€šè¿‡æŒ‰ä½çš„æ—¶é—´é•¿çŸ­å†³å®šæ˜¯å¦è§¦å‘
 		if (ControlledPawn && FollowTime <= ShortPressTime)
 		{
-			//½øĞĞÑ°Â·
+			//è¿›è¡Œå¯»è·¯
 			if (UNavigationPath* Path = UNavigationSystemV1::FindPathToLocationSynchronously(this, ControlledPawn->GetActorLocation(), CacheHitVector))
 			{
 				Spline->ClearSplinePoints();
@@ -189,7 +189,7 @@ void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag GameplayTag)
 				{
 					Spline->AddSplinePoint(PointLoc, ESplineCoordinateSpace::World);
 				}
-				//¸üĞÂÊó±êµã»÷µã·ÀÖ¹Êó±êµãµ½²»¿Éµ½´ïµØÈËÎï²»Í£Ö¹ÒÆ¶¯
+				//æ›´æ–°é¼ æ ‡ç‚¹å‡»ç‚¹é˜²æ­¢é¼ æ ‡ç‚¹åˆ°ä¸å¯åˆ°è¾¾åœ°äººç‰©ä¸åœæ­¢ç§»åŠ¨
 				if (!Path->PathPoints.IsEmpty())
 				{
 					CacheHitVector = Path->PathPoints[Path->PathPoints.Num() - 1];
@@ -205,7 +205,7 @@ void AAuraPlayerController::AbilityInputTagHeld(FGameplayTag GameplayTag)
 {
 	//GEngine->AddOnScreenDebugMessage(3, 3.0f, FColor::Yellow, *(FString("Hold ") + GameplayTag.ToString()));
 
-	//²»ÊÇ×ó¼üµÄ¹¦ÄÜ¼¤»îÆä¶ÔÓ¦ µÄAbility
+	//ä¸æ˜¯å·¦é”®çš„åŠŸèƒ½æ¿€æ´»å…¶å¯¹åº” çš„Ability
 	if (!GameplayTag.MatchesTagExact(FAuraGameplayTags::Get().Ability_LMB))
 	{
 		if (GetASC())
@@ -214,11 +214,11 @@ void AAuraPlayerController::AbilityInputTagHeld(FGameplayTag GameplayTag)
 		}
 		return;
 	}
-	//×ó¼üµÄ¹¦ÄÜ
+	//å·¦é”®çš„åŠŸèƒ½
 
 	if (bHitTarget)
 	{
-		//×ó¼ü´¥ÅöÆäËû½ÇÉ«µÄ¹¦ÄÜ
+		//å·¦é”®è§¦ç¢°å…¶ä»–è§’è‰²çš„åŠŸèƒ½
 		if (GetASC())
 		{
 			GetASC()->AbilityInputTagHeld(GameplayTag);
@@ -227,7 +227,7 @@ void AAuraPlayerController::AbilityInputTagHeld(FGameplayTag GameplayTag)
 	}
 	else
 	{
-		//×ó¼ü´¥ÅöµÄµØÃæµÈ
+		//å·¦é”®è§¦ç¢°çš„åœ°é¢ç­‰
 		bAutoRuning = false;
 		FollowTime += GetWorld()->GetDeltaSeconds();
 		if (HitResult.bBlockingHit)
@@ -261,7 +261,7 @@ void AAuraPlayerController::Move(const FInputActionValue& InputValue)
 	const FVector2D PlayerAxisVector = InputValue.Get<FVector2D>();
 	const FRotator Rotation = GetControlRotation();
 	const FRotator YawRotation(0, Rotation.Yaw, 0);
-	//Í¨¹ı¾ØÕó»ñÈ¡X,Y·½Ïò´óĞ¡
+	//é€šè¿‡çŸ©é˜µè·å–X,Yæ–¹å‘å¤§å°
 	const FVector ForwordDir = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
 	const FVector RightDir = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 

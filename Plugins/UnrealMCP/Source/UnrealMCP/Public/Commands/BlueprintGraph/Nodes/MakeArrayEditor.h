@@ -1,4 +1,4 @@
-// Header for editing MakeArray nodes (element management)
+﻿// Header for editing MakeArray nodes (element management)
 
 #pragma once
 

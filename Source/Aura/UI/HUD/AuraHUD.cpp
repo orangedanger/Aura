@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "AuraHUD.h"
@@ -47,17 +47,17 @@ USpellMenuWidgetController* AAuraHUD::GetSpellMenuWidgetController(const FWidget
 void AAuraHUD::InitOverlap(APlayerController* PC, APlayerState* PS, UAbilitySystemComponent* ASC, UAttributeSet* AS)
 {
 	/*
-	*ÏÈ¼ì²éÁ½¸öClassÊÇ·ñÓĞÖµcheckf()
-	*¶ÔUserWidget³õÊ¼»¯
-	*½«UserWidget×ª»¯ÎªAuraUserWidget
-	*´´½¨OverlapWidgetController²¢½øĞĞ³õÊ¼»¯
-	*²¢µ÷ÓÃAuraUserWidgetÀïÃæµÄSetWidgetController½øĞĞÁªÏµController
+	*å…ˆæ£€æŸ¥ä¸¤ä¸ªClassæ˜¯å¦æœ‰å€¼checkf()
+	*å¯¹UserWidgetåˆå§‹åŒ–
+	*å°†UserWidgetè½¬åŒ–ä¸ºAuraUserWidget
+	*åˆ›å»ºOverlapWidgetControllerå¹¶è¿›è¡Œåˆå§‹åŒ–
+	*å¹¶è°ƒç”¨AuraUserWidgeté‡Œé¢çš„SetWidgetControllerè¿›è¡Œè”ç³»Controller
 	**/
 	
 	checkf(OverlapWidgetClass, TEXT("Set WBP_AuraOverlap To OverlapWidgetClass In BP_AuraHUD"));
 	checkf(OverlapWidgetControllerClass, TEXT("Set OverlapWidgetControllerClass In BP_AuraHUD"));
 	
-	//½«´´½¨ºÃµÄ²Ëµ¥(WBP_AuraOverlap)¼ÓÈëÆÁÄ»ÖĞ
+	//å°†åˆ›å»ºå¥½çš„èœå•(WBP_AuraOverlap)åŠ å…¥å±å¹•ä¸­
 	UUserWidget* Widget = CreateWidget<UUserWidget>(GetWorld(), OverlapWidgetClass);
 	OverlapWidget = Cast<UAuraUserWidget>(Widget);
 

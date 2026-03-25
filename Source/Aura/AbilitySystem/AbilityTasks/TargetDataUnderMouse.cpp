@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "TargetDataUnderMouse.h"
@@ -17,19 +17,19 @@ void UTargetDataUnderMouse::Activate()
 	
 	if (Ability->GetCurrentActorInfo()->IsLocallyControlled())
 	{
-		//ÓÉ±¾µØ¿ØÖÆ´«µİData¸ø·şÎñ¶Ë
+		//ç”±æœ¬åœ°æ§åˆ¶ä¼ é€’Dataç»™æœåŠ¡ç«¯
 		SendMouseCursorData();
 	}
 	else
 	{
-		//·şÎñÆ÷½ÓÊÜData×ö³ö·´Ó¦
+		//æœåŠ¡å™¨æ¥å—Dataåšå‡ºååº”
 		const FGameplayAbilitySpecHandle SpecHandle = GetAbilitySpecHandle();
 		const FPredictionKey PredictionKey = GetActivationPredictionKey();
 		
-		//°ó¶¨µÄº¯ÊıÔÚºÎÊ±µ÷ÓÃ£¿ µÈ´ıÍê³ÉºóÖ´ĞĞ
+		//ç»‘å®šçš„å‡½æ•°åœ¨ä½•æ—¶è°ƒç”¨ï¼Ÿ ç­‰å¾…å®Œæˆåæ‰§è¡Œ
 		AbilitySystemComponent->AbilityTargetDataSetDelegate(SpecHandle, PredictionKey).AddUObject(this,&UTargetDataUnderMouse::OnTargetDataReplicatedCallback);
 
-		//Êı¾İÎ´³É¹¦´«µİ£¬ĞèÒªµÈ´ı
+		//æ•°æ®æœªæˆåŠŸä¼ é€’ï¼Œéœ€è¦ç­‰å¾…
 		if (!AbilitySystemComponent->CallReplicatedTargetDataDelegatesIfSet(SpecHandle, PredictionKey))
 		{
 			SetWaitingOnRemotePlayerData();
@@ -53,7 +53,7 @@ void UTargetDataUnderMouse::SendMouseCursorData()
 	Data->HitResult = HitResult;
 	DataHandle.Add(Data);
 
-	//´«µİDataµ½·şÎñ¶Ë
+	//ä¼ é€’Dataåˆ°æœåŠ¡ç«¯
 	AbilitySystemComponent->ServerSetReplicatedTargetData(
 		GetAbilitySpecHandle(), 
 		GetActivationPredictionKey(), 
@@ -63,18 +63,18 @@ void UTargetDataUnderMouse::SendMouseCursorData()
 
 	if (ShouldBroadcastAbilityTaskDelegates())
 	{
-		//½«LocationÍ¨¹ıÎ¯ÍĞ´«µİ¸øÀ¶Í¼
+		//å°†Locationé€šè¿‡å§”æ‰˜ä¼ é€’ç»™è“å›¾
 		ValidData.Broadcast(DataHandle);
 	}
 }
 
 void UTargetDataUnderMouse::OnTargetDataReplicatedCallback(const FGameplayAbilityTargetDataHandle& DataHandle, FGameplayTag ActivationTag)
 {
-	////Ê¹ÓÃÀ´×Ô¿Í»§¶ËµÄ»º´æ TargetData£¨½ö TargetData£©
+	////ä½¿ç”¨æ¥è‡ªå®¢æˆ·ç«¯çš„ç¼“å­˜ TargetDataï¼ˆä»… TargetDataï¼‰
 	AbilitySystemComponent->ConsumeClientReplicatedTargetData(GetAbilitySpecHandle(), GetActivationPredictionKey());
 	if (ShouldBroadcastAbilityTaskDelegates())
 	{
-		//½«LocationÍ¨¹ıÎ¯ÍĞ´«µİ¸øÀ¶Í¼
+		//å°†Locationé€šè¿‡å§”æ‰˜ä¼ é€’ç»™è“å›¾
 		ValidData.Broadcast(DataHandle);
 	}
 }

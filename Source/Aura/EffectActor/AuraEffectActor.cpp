@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "AuraEffectActor.h"
@@ -25,7 +25,7 @@ AAuraEffectActor::AAuraEffectActor()
 void AAuraEffectActor::BeginPlay()
 {
 	Super::BeginPlay();
-	//°ó¶¨Åö×²
+	//ç»‘å®šç¢°æ’ž
 	SphereCollision->OnComponentBeginOverlap.AddDynamic(this, &AAuraEffectActor::OnOverlap);
 	SphereCollision->OnComponentEndOverlap.AddDynamic(this, &AAuraEffectActor::OnOverlapEnd);
 }

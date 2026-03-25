@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "AuraAbilitySystemLibrary.h"
 #include "Aura/UI/WidgetController/OverlapWidgetController.h"
@@ -130,12 +130,12 @@ void UAuraAbilitySystemLibrary::GiveStartupAbilities(const UObject* WorldContext
 		FGameplayAbilitySpec AbilitySpec = FGameplayAbilitySpec(AbilityClassOf, 1);
 		ASC->GiveAbility(AbilitySpec);
 	}
-	//»ñÈ¡AbilitiesÊı×é
+	//è·å–Abilitiesæ•°ç»„
 	const FCharacterClassDefaultInfo DefaultInfo = ClassInfo->GetCharacterDefaultInfo(CharacterClass);
-	//ÔÚCombatInterfaceÖĞ¿ÉÒÔ»ñÈ¡Level
+	//åœ¨CombatInterfaceä¸­å¯ä»¥è·å–Level
 	if (ASC->GetAvatarActor()->Implements<UCombatInterface>())
 	{
-		//±éÀúÈ¥³õÊ¼»¯Ã¿¸öAbility
+		//éå†å»åˆå§‹åŒ–æ¯ä¸ªAbility
 		for (TSubclassOf<UGameplayAbility> AbilityClassOf : DefaultInfo.SetupAbilities)
 		{
 			FGameplayAbilitySpec AbilitySpec = FGameplayAbilitySpec(AbilityClassOf,ICombatInterface::Execute_GetPlayerLevel(ASC->GetAvatarActor()));
@@ -202,7 +202,7 @@ void UAuraAbilitySystemLibrary::QueryActorsInRadius(const UObject* WorldContext,
 		World->OverlapMultiByObjectType(Overlaps, SphereCenter, FQuat::Identity, FCollisionObjectQueryParams(FCollisionObjectQueryParams::InitType::AllDynamicObjects), FCollisionShape::MakeSphere(Radius), SphereParams);
 		for (const FOverlapResult& Overlap:Overlaps)
 		{
-			//¼ì²âOverlap½ÇÉ«ÊÇ·ñ¼Ì³ĞÁË CombatInterfaceÀà ÇÒ ÊÇ·ñËÀÍö
+			//æ£€æµ‹Overlapè§’è‰²æ˜¯å¦ç»§æ‰¿äº† CombatInterfaceç±» ä¸” æ˜¯å¦æ­»äº¡
 			if (Overlap.GetActor()->Implements<UCombatInterface>() && !ICombatInterface::Execute_isDie(Overlap.GetActor()))
 			{
 				OutputActor.AddUnique(Overlap.GetActor());

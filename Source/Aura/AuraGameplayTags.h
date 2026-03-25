@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -78,7 +78,7 @@ public:
 
 	//Cooldown
 	FGameplayTag Cooldown_Fire_FireBolt;
-
+	FGameplayTag Cooldown_Thunder_ThunderStroke;
 	//Montage
 	FGameplayTag Montage_Attack_Weapon;
 	FGameplayTag Montage_Attack_LeftHand;
@@ -86,9 +86,6 @@ public:
 	FGameplayTag Montage_Attack_Tail;
 	FGameplayTag Montage_Summon_Weapon;
 
-protected:
-
 private:
-
 	static FAuraGameplayTags AuraGameplayTags;
 };

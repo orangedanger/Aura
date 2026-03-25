@@ -1,4 +1,4 @@
-// Header for editing ExecutionSequence nodes (pin management)
+﻿// Header for editing ExecutionSequence nodes (pin management)
 
 #pragma once
 

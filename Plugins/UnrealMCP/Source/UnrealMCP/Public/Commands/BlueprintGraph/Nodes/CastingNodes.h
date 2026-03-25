@@ -1,4 +1,4 @@
-// Header for creating casting nodes (DynamicCast, ClassDynamicCast, CastByteToEnum)
+﻿// Header for creating casting nodes (DynamicCast, ClassDynamicCast, CastByteToEnum)
 
 #pragma once
 

@@ -1,4 +1,4 @@
-#include "Commands/BlueprintGraph/BPVariables.h"
+﻿#include "Commands/BlueprintGraph/BPVariables.h"
 #include "Commands/EpicUnrealMCPCommonUtils.h"
 #include "Engine/Blueprint.h"
 #include "EdGraphSchema_K2.h"

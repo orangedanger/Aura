@@ -1,4 +1,4 @@
-// Manages Blueprint function input and output parameters
+﻿// Manages Blueprint function input and output parameters
 
 #pragma once
 

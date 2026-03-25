@@ -1,4 +1,4 @@
-#include "Commands/BlueprintGraph/NodePropertyManager.h"
+﻿#include "Commands/BlueprintGraph/NodePropertyManager.h"
 #include "Commands/BlueprintGraph/Nodes/SwitchEnumEditor.h"
 #include "Commands/BlueprintGraph/Nodes/ExecutionSequenceEditor.h"
 #include "Commands/BlueprintGraph/Nodes/MakeArrayEditor.h"

@@ -1,4 +1,4 @@
-// Manages Blueprint node creation and manipulation
+﻿// Manages Blueprint node creation and manipulation
 
 #pragma once
 

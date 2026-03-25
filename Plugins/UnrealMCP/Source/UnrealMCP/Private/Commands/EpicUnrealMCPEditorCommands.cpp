@@ -1,4 +1,4 @@
-#include "Commands/EpicUnrealMCPEditorCommands.h"
+﻿#include "Commands/EpicUnrealMCPEditorCommands.h"
 #include "Commands/EpicUnrealMCPCommonUtils.h"
 #include "Editor.h"
 #include "EditorViewportClient.h"

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -9,10 +9,10 @@
 
 class AEnemyCharacter;
 
-// ¸ü¸ßĞ§ÇÒ¿É¶ÁµÄÊı¾İ´æ´¢
+// æ›´é«˜æ•ˆä¸”å¯è¯»çš„æ•°æ®å­˜å‚¨
 struct FLocationConstraint {
-	float DistanceToOrigin; // µ½Ô­µãµÄ¾àÀë
-	float GeneratedAngle;   // Éú³ÉÊ±µÄ½Ç¶È
+	float DistanceToOrigin; // åˆ°åŸç‚¹çš„è·ç¦»
+	float GeneratedAngle;   // ç”Ÿæˆæ—¶çš„è§’åº¦
 };
 
 /**

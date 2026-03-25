@@ -1,4 +1,4 @@
-// Header for editing SwitchEnum nodes (enum type management)
+﻿// Header for editing SwitchEnum nodes (enum type management)
 
 #pragma once
 

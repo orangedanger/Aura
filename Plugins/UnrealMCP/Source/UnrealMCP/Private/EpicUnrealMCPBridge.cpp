@@ -1,4 +1,4 @@
-#include "EpicUnrealMCPBridge.h"
+﻿#include "EpicUnrealMCPBridge.h"
 #include "MCPServerRunnable.h"
 #include "Sockets.h"
 #include "SocketSubsystem.h"

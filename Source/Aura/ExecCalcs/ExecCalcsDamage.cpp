@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "ExecCalcsDamage.h"
 #include"AbilitySystemComponent.h"
@@ -43,7 +43,7 @@ static const AuraDamageStatics& DamageStatics()
 	return DStatic;
 }
 
-//½øĞĞÊôĞÔµÄ²¶»ñ
+//è¿›è¡Œå±æ€§çš„æ•è·
 UExecCalcsDamage::UExecCalcsDamage()
 {
 	RelevantAttributesToCapture.Add(DamageStatics().CriticalHitChanceDef);
@@ -60,7 +60,7 @@ UExecCalcsDamage::UExecCalcsDamage()
 
 void UExecCalcsDamage::Execute_Implementation(const FGameplayEffectCustomExecutionParameters& ExecutionParams, FGameplayEffectCustomExecutionOutput& OutExecutionOutput) const
 {
-	//»ù´¡ÖµµÄÉè¶¨
+	//åŸºç¡€å€¼çš„è®¾å®š
 	const UAbilitySystemComponent* TargetASC = ExecutionParams.GetTargetAbilitySystemComponent();
 	const UAbilitySystemComponent* SoureASC = ExecutionParams.GetSourceAbilitySystemComponent();
 
@@ -78,19 +78,19 @@ void UExecCalcsDamage::Execute_Implementation(const FGameplayEffectCustomExecuti
 		return;
 	}
 
-	//ÉËº¦
+	//ä¼¤å®³
 	float Damage = 0.f;
 
-	//ÃüÖĞÖµ
+	//å‘½ä¸­å€¼
 	float HitBonus = 0.f;
 	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().HitBonusDef, EvaluateParameters, HitBonus);
 
-	//ÉÁ±Ü
+	//é—ªé¿
 	float Evade = 0.f;
-	//»ñµÃÊôĞÔÖµ
+	//è·å¾—å±æ€§å€¼
 	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().EvadeDef, EvaluateParameters, Evade);
 
-	//´«µİÉÁ±ÜÊÇ·ñ³É¹¦
+	//ä¼ é€’é—ªé¿æ˜¯å¦æˆåŠŸ
 	const bool bEvade = FMath::RandRange(0, 100) < FMath::Max(0, ((Evade - HitBonus) / (Evade + 25)) * 100);
 	UAuraAbilitySystemLibrary::SetIsEvade(EffectContextHandle, bEvade);
 	if (bEvade)
@@ -103,60 +103,60 @@ void UExecCalcsDamage::Execute_Implementation(const FGameplayEffectCustomExecuti
 		{
 			float DamageTypeValue = Spec.GetSetByCallerMagnitude(DamageTag,false);
 
-			//Ä§·¨·ÀÓù
+			//é­”æ³•é˜²å¾¡
 			float MagicalDefense = 0.f;
 			ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().MagicalDefenseDef, EvaluateParameters, MagicalDefense);
 			MagicalDefense = FMath::Max<float>(MagicalDefense, 0);
 
-			//Ä§·¨´©Í¸
+			//é­”æ³•ç©¿é€
 			float MagicalPenetration = 0.f;
 			ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().MagicalPenetrationDef, EvaluateParameters, MagicalPenetration);
 			MagicalPenetration = FMath::Max<float>(MagicalPenetration, 0);
 
-			//ÎïÀí·ÀÓù
+			//ç‰©ç†é˜²å¾¡
 			float PhysicalDefense = 0.f;
 			ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().PhysicalDefenseDef, EvaluateParameters, PhysicalDefense);
 			PhysicalDefense = FMath::Max<float>(PhysicalDefense, 0);
 
-			//ÎïÀí´©Í¸
+			//ç‰©ç†ç©¿é€
 			float PhysicalPenetration = 0.f;
 			ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().PhysicalPenetrationDef, EvaluateParameters, PhysicalPenetration);
 			PhysicalPenetration = FMath::Max<float>(PhysicalPenetration, 0);
 
-			//ÉËº¦¼õÃâ(£¨»¤¼×-´©Í¸£©/£¨»¤¼×+100£©)
+			//ä¼¤å®³å‡å…(ï¼ˆæŠ¤ç”²-ç©¿é€ï¼‰/ï¼ˆæŠ¤ç”²+100ï¼‰)
 			const float MagicalDamageReduce = (MagicalDefense - MagicalPenetration) / (MagicalDefense + 100);
 			const float PhysicalDamageReduce = (PhysicalDefense - PhysicalPenetration) / (PhysicalDefense + 100);
 
 			if (DamageTag == FAuraGameplayTags::Get().Physical_Damage)
 			{
-				//ÎïÀíÉËº¦
+				//ç‰©ç†ä¼¤å®³
 				float PhysicalAttack = 0.f;
 				ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().PhysicalAttackDef, EvaluateParameters, PhysicalAttack);
 				DamageTypeValue = DamageTypeValue * (1 - PhysicalDamageReduce) * (1 + PhysicalAttack / 40.f);
 			}
 			else
 			{
-				//Ä§·¨ÉËº¦
+				//é­”æ³•ä¼¤å®³
 				float MagicalAttack = 0.f;
 				ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().MagicalAttackDef, EvaluateParameters, MagicalAttack);
 
 				DamageTypeValue = DamageTypeValue * (1 - MagicalDamageReduce)* (1 + MagicalAttack / 40.f);
 			}
-			//ÉËº¦»ã×Ü
+			//ä¼¤å®³æ±‡æ€»
 			Damage += DamageTypeValue;
 		}
 
-		//±©»÷¸ÅÂÊ
+		//æš´å‡»æ¦‚ç‡
 		float CriticalHitChance = 0.f;
 		ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().CriticalHitChanceDef, EvaluateParameters, CriticalHitChance);
 		CriticalHitChance = FMath::Max<float>(CriticalHitChance, 0);
 
-		//±©»÷¼Ó³É
+		//æš´å‡»åŠ æˆ
 		float CriticalHitBonus = 0.f;
 		ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().CriticalHitBonusDef, EvaluateParameters, CriticalHitBonus);
 		CriticalHitBonus = FMath::Max<float>(CriticalHitBonus, 0);
 
-		//´«µİ±©»÷ÊÇ·ñ³É¹¦
+		//ä¼ é€’æš´å‡»æ˜¯å¦æˆåŠŸ
 		const bool bCriticalHit = FMath::RandRange(0, 100) < CriticalHitChance;
 		UAuraAbilitySystemLibrary::SetIsCriticalHit(EffectContextHandle, bCriticalHit);
 		if (bCriticalHit)
@@ -164,7 +164,7 @@ void UExecCalcsDamage::Execute_Implementation(const FGameplayEffectCustomExecuti
 			Damage = bCriticalHit ? Damage * (1 + CriticalHitBonus) : Damage;
 		}
 
-		// ÉËº¦ = £¨ÉËº¦ * (1+±©»÷¼Ó³É)£©*£¨1-ÉËº¦¼õÃâ£©
+		// ä¼¤å®³ = ï¼ˆä¼¤å®³ * (1+æš´å‡»åŠ æˆ)ï¼‰*ï¼ˆ1-ä¼¤å®³å‡å…ï¼‰
 		Damage = FMath::FloorToFloat(Damage);
 	}
 

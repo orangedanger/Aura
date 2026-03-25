@@ -1,4 +1,4 @@
-// Header for creating utility nodes (Print, CallFunction, Select, SpawnActor)
+﻿// Header for creating utility nodes (Print, CallFunction, Select, SpawnActor)
 
 #pragma once
 

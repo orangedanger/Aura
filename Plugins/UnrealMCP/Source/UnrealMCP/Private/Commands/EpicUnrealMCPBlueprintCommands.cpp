@@ -1,4 +1,4 @@
-#include "Commands/EpicUnrealMCPBlueprintCommands.h"
+﻿#include "Commands/EpicUnrealMCPBlueprintCommands.h"
 #include "Commands/EpicUnrealMCPCommonUtils.h"
 #include "Engine/Blueprint.h"
 #include "Engine/BlueprintGeneratedClass.h"

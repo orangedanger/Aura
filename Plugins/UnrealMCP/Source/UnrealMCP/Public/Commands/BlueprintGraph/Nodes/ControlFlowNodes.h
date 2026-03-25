@@ -1,4 +1,4 @@
-// Header for creating control flow nodes (Branch, Switch, Comparison, ExecutionSequence)
+﻿// Header for creating control flow nodes (Branch, Switch, Comparison, ExecutionSequence)
 
 #pragma once
 

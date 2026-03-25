@@ -1,4 +1,4 @@
-// Utility header for node creation helpers
+﻿// Utility header for node creation helpers
 
 #pragma once
 

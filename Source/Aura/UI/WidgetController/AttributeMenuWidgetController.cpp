@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "AttributeMenuWidgetController.h"
@@ -10,7 +10,7 @@
 
 void UAttributeMenuWidgetController::InitBroadcast()
 {
-	checkf(AssetInfo, TEXT("¼ì²é AssetInfo ÊÇ·ñ¼ÓÈëµ½ À¶Í¼AttributeMenuWidgetControllerÖÐ"));
+	checkf(AssetInfo, TEXT("æ£€æŸ¥ AssetInfo æ˜¯å¦åŠ å…¥åˆ° è“å›¾AttributeMenuWidgetControllerä¸­"));
 
 	for (const auto& Pair : GetAuraAS()->TagToAttribute)
 	{

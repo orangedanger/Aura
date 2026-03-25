@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "AuraDamageGameplayAbility.h"
 #include"AbilitySystemBlueprintLibrary.h"
@@ -11,11 +11,11 @@ void UAuraDamageGameplayAbility::CasusDamage(AActor* TargetActor)
 	for (const auto& Damage : Damages)
 	{
 		const float ScaleDamage = Damage.Value.GetValueAtLevel(GetAbilityLevel());
-		//EffectSpec°ó¶¨TagºÍÉËº¦
+		//EffectSpecç»‘å®šTagå’Œä¼¤å®³
 		UAbilitySystemBlueprintLibrary::AssignTagSetByCallerMagnitude(DamageSpecHandle, Damage.Key, ScaleDamage);
 	}
 
-	//thisActor¸øTargetActor¸½¼ÓEffect
+	//thisActorç»™TargetActoré™„åŠ Effect
 	GetAbilitySystemComponentFromActorInfo()->ApplyGameplayEffectSpecToTarget(*DamageSpecHandle.Data.Get(),UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(TargetActor));
 
 

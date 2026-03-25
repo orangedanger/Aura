@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "AuraSummonGameplayAbility.h"
@@ -9,41 +9,41 @@ TArray<FVector> UAuraSummonGameplayAbility::GetRandomSummonLocation()
 {
     TArray<FVector> SpawnLocations;
 
-    // »º´æActorÊı¾İ
+    // ç¼“å­˜Actoræ•°æ®
     const AActor* AvatarActor = GetAvatarActorFromActorInfo();
     const FVector ActorLocation = AvatarActor->GetActorLocation();
     const FVector ActorForward = AvatarActor->GetActorForwardVector();
 
-    // Ô¤¼ÆËã³£Á¿
+    // é¢„è®¡ç®—å¸¸é‡
     const float HalfAngle = MaxAngle * 0.5f;
     const FVector LeftDir = ActorForward.RotateAngleAxis(HalfAngle, FVector::UpVector);
     const FVector RightDir = ActorForward.RotateAngleAxis(-HalfAngle, FVector::UpVector);
 
-    // µ÷ÊÔ»æÖÆ
+    // è°ƒè¯•ç»˜åˆ¶
 //#if WITH_EDITOR
 //    UKismetSystemLibrary::DrawDebugLine(this, ActorLocation + MinRadius * LeftDir, ActorLocation + MaxRadius * LeftDir, FColor::Green, 3.f);
 //    UKismetSystemLibrary::DrawDebugLine(this, ActorLocation + MinRadius * RightDir, ActorLocation + MaxRadius * RightDir, FColor::Green, 3.f);
 //#endif
 
     TArray<FLocationConstraint> ExistingConstraints;
-    const int32 MaxAttempts = NumToSummon * 10; // ·ÀÖ¹ÎŞÏŞÑ­»·
+    const int32 MaxAttempts = NumToSummon * 10; // é˜²æ­¢æ— é™å¾ªç¯
     int32 Attempts = 0;
 
     while (SpawnLocations.Num() < NumToSummon && Attempts++ < MaxAttempts) 
     {
-        // Éú³ÉºòÑ¡Î»ÖÃ
+        // ç”Ÿæˆå€™é€‰ä½ç½®
         const float Radius = FMath::FRandRange(MinRadius, MaxRadius);
         const float Angle = FMath::FRandRange(-HalfAngle, HalfAngle);
         const FVector Direction = ActorForward.RotateAngleAxis(Angle, FVector::UpVector);
         FVector CandidateLocation = ActorLocation + Radius * Direction;
 
-        // Ğ£ÑéÌõ¼ş
+        // æ ¡éªŒæ¡ä»¶
         bool bValid = true;
         for (const FLocationConstraint& Constraint : ExistingConstraints) 
         {
             const FVector ExistingLocation = ActorLocation + Constraint.DistanceToOrigin * ActorForward.RotateAngleAxis(Constraint.GeneratedAngle, FVector::UpVector);
             const float Distance = FVector::Distance(CandidateLocation, ExistingLocation);
-            const float AngularDiff =FMath::Abs(Constraint.GeneratedAngle - Angle)/* Êµ¼Ê½Ç¶È²î¼ÆËã */;
+            const float AngularDiff =FMath::Abs(Constraint.GeneratedAngle - Angle)/* å®é™…è§’åº¦å·®è®¡ç®— */;
 
             if (Distance < SpawnMinSpace && AngularDiff < SpawnMinAngle) 
             {

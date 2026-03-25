@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -38,7 +38,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "AuraAbilitySystemLibrary|AbilitySystemLibrary", meta = (DefaultToSelf = "WorldContext"))
 	static void InitDefaultAttribute(const UObject* WorldContext, ECharacterClass CharacterClass, float level, UAbilitySystemComponent* ASC);
 
-	//³õÊ¼»¯Character Class Info ÖĞµÄ¼¸¸ö Abilities
+	//åˆå§‹åŒ–Character Class Info ä¸­çš„å‡ ä¸ª Abilities
 	UFUNCTION(BlueprintCallable, Category = "AuraAbilitySystemLibrary|AbilitySystemLibrary")
 	static void GiveStartupAbilities(const UObject* WorldContext, UAbilitySystemComponent* ASC,ECharacterClass CharacterClass);
 

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "AuraProjectileSpell.h"
 #include "AbilitySystemComponent.h"
@@ -14,6 +14,7 @@ void UAuraProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle Hand
 
 void UAuraProjectileSpell::ProjectileShell(const FVector& HitLocation,const FGameplayTag& WeaponTag)
 {
+	//åªåœ¨æœåŠ¡å™¨ä¸­è¿è¡Œ
 	if (!GetAvatarActorFromActorInfo()->HasAuthority()) return;
 
 	FTransform ProjectileTransform;
@@ -56,7 +57,7 @@ void UAuraProjectileSpell::ProjectileShell(const FVector& HitLocation,const FGam
 	for (auto& pair : Damages)
 	{
 		const float ScaleDamage = pair.Value.GetValueAtLevel(GetAbilityLevel());
-		//½«Attribute ºÍ Tag ºÍ ÉËº¦ÊýÖµ½áºÏ
+		//å°†Attribute å’Œ Tag å’Œ ä¼¤å®³æ•°å€¼ç»“åˆ
 		UAbilitySystemBlueprintLibrary::AssignTagSetByCallerMagnitude(AuraProjectile->DamageSpecHandle, pair.Key, ScaleDamage);
 
 		//Damage += ScaleDamage;

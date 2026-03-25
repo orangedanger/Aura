@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "MyBTService_FindNearestPlayer.h"
@@ -12,16 +12,16 @@ void UMyBTService_FindNearestPlayer::TickNode(UBehaviorTreeComponent& OwnerComp,
 
 	const APawn* AIPawn = AIOwner->GetPawn();
 
-	//»ñÈ¡µĞ¶ÔÄ¿±êµÄTarget
+	//è·å–æ•Œå¯¹ç›®æ ‡çš„Target
 	const FName TargetTag = AIPawn->ActorHasTag("Player") ? FName("Enemey") : FName("Player");
 
-	//»ñÈ¡Actors
+	//è·å–Actors
 	TArray<AActor*> TargetActors;
 	UGameplayStatics::GetAllActorsWithTag(AIPawn, TargetTag, TargetActors);
 
 	float NearestDistance = TNumericLimits<float>::Max();
 	AActor* NearestActor = nullptr;
-	//ÕÒ×î½üµÄÍæ¼Ò
+	//æ‰¾æœ€è¿‘çš„ç©å®¶
 	for (AActor*& TargetActor : TargetActors)
 	{
 		const float DistanceToTarget = AIPawn->GetDistanceTo(TargetActor);
@@ -31,7 +31,7 @@ void UMyBTService_FindNearestPlayer::TickNode(UBehaviorTreeComponent& OwnerComp,
 			NearestActor = TargetActor;
 		}
 	}
-	//ÉèÖÃSelector¶ÔÓ¦ÏàÓ¦µÄÖµ
+	//è®¾ç½®Selectorå¯¹åº”ç›¸åº”çš„å€¼
 	UBTFunctionLibrary::SetBlackboardValueAsFloat(this, DistanceToTargetSelector, NearestDistance);
 	UBTFunctionLibrary::SetBlackboardValueAsObject(this, TargetToFollowSelector, NearestActor);
 

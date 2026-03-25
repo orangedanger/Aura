@@ -1,4 +1,4 @@
-// Header for creating data nodes (Variable Get/Set, MakeArray)
+﻿// Header for creating data nodes (Variable Get/Set, MakeArray)
 
 #pragma once
 

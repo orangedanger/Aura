@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -13,9 +13,9 @@ class UGameplayAbility;
 UENUM(BlueprintType)
 enum class ECharacterClass : uint8
 {
-	Elementalist,	//ħ��ʦ
-	Ranger,			//����
-	Warrior			//սʿ
+	Elementalist,	//魔法师
+	Ranger,			//游侠
+	Warrior			//战士
 };
 
 USTRUCT(BlueprintType)

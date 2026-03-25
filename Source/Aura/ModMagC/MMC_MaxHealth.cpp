@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+Ôªø// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "MMC_MaxHealth.h"
@@ -7,7 +7,7 @@
 
 UMMC_MaxHealth::UMMC_MaxHealth()
 {
-	//ªÒ»°Vigour Ù–‘
+	//Ëé∑ÂèñVigourÂ±ûÊÄß
 	VigourDef.AttributeToCapture = UAuraAttributeSet::GetVigourAttribute();
 	VigourDef.AttributeSource = EGameplayEffectAttributeCaptureSource::Target;
 	VigourDef.bSnapshot = false;

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "AuraCharacter.h"
@@ -14,14 +14,14 @@
 
 AAuraCharacter::AAuraCharacter()
 {
-	//¿ªÊ¼ºó¿ÉÒÔĞı×ª
+	//å¼€å§‹åå¯ä»¥æ—‹è½¬
 	GetCharacterMovement()->bOrientRotationToMovement = true;
-	//¿ÉÒÔÔÚÄÄ¸ö·½ÏòĞı×ª
+	//å¯ä»¥åœ¨å“ªä¸ªæ–¹å‘æ—‹è½¬
 	GetCharacterMovement()->RotationRate = FRotator(0.f, 400.f, 0.f);
-	//Ä¿µÄÊÇÊÇÄ¿±ê¶ÔÆëµ½Æ½Ãæ
+	//ç›®çš„æ˜¯æ˜¯ç›®æ ‡å¯¹é½åˆ°å¹³é¢
 	GetCharacterMovement()->bSnapToPlaneAtStart = true;
 	GetCharacterMovement ()->bConstrainToPlane = true;
-	//Í¨¹ıController¿ØÖÆ·½Ïò¹Ø±Õ
+	//é€šè¿‡Controlleræ§åˆ¶æ–¹å‘å…³é—­
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationRoll = false;
 	bUseControllerRotationYaw = false;
@@ -49,7 +49,7 @@ void AAuraCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
 
-	//ÔÚ·şÎñÆ÷¶Ë½øĞĞ³õÊ¼»¯
+	//åœ¨æœåŠ¡å™¨ç«¯è¿›è¡Œåˆå§‹åŒ–
 	InitialAbilityActor();
 	GrantGameplayAbilities();
 }
@@ -58,7 +58,7 @@ void AAuraCharacter::OnRep_PlayerState()
 {
 	Super::OnRep_PlayerState();
 
-	//ÔÚ¿Í»§Æ÷¶Ë½øĞĞ³õÊ¼»¯
+	//åœ¨å®¢æˆ·å™¨ç«¯è¿›è¡Œåˆå§‹åŒ–
 	InitialAbilityActor();
 }
 

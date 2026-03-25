@@ -1,4 +1,4 @@
-#include "LogCategory.h"
+﻿#include "LogCategory.h"
 
-// ʵ�� Log Category
+// 实现 Log Category
 DEFINE_LOG_CATEGORY(AuraLog);

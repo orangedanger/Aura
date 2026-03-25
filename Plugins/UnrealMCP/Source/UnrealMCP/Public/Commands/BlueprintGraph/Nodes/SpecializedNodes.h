@@ -1,4 +1,4 @@
-// Header for creating specialized nodes (Timeline, GetDataTableRow, AddComponentByClass, Self, Knot)
+﻿// Header for creating specialized nodes (Timeline, GetDataTableRow, AddComponentByClass, Self, Knot)
 
 #pragma once
 
