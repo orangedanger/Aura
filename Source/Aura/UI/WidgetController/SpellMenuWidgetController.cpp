@@ -22,7 +22,7 @@ void USpellMenuWidgetController::BroadcastCallbackToDependences()
 			{
 				Info.StateTag = StateTag;
 				OnAbilityInfoSingnature.Broadcast(Info);
-			}		
+			}
 		}
 	);
 
@@ -31,4 +31,9 @@ void USpellMenuWidgetController::BroadcastCallbackToDependences()
 			SpellPointDelegate.Broadcast(ShellPoint);
 		}
 	);
+}
+
+void USpellMenuWidgetController::UnlockSpell(const FGameplayTag& AbilityTag)
+{
+	GetAuraASC()->UpgradeSpellPoint(AbilityTag);
 }

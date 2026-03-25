@@ -14,7 +14,7 @@ DECLARE_DELEGATE_OneParam(FForEachAbility, const FGameplayAbilitySpec&);
 DECLARE_MULTICAST_DELEGATE_TwoParams(FAbilityStateChangeDelegate, const FGameplayTag& /*AbilityTag*/, const FGameplayTag& /*StateTag*/);
 
 /**
- * 
+ *
  */
 UCLASS()
 class AURA_API UAuraAbilitySystemComponent : public UAbilitySystemComponent
@@ -53,7 +53,7 @@ public:
 
 	void UpgradeAttribute(const FGameplayTag& AttributeTag);
 
-	void UpgradeSpellPoint();
+	void UpgradeSpellPoint(const FGameplayTag& AbilityTag);
 	void UpdataAbilitiesState(int InLevel);
 
 protected:
@@ -62,6 +62,9 @@ protected:
 
 	UFUNCTION(Client, Reliable)
 	void ClientAbilityStateChange(const FGameplayTag& AbilityTag, const FGameplayTag& StateTag);
+
+	UFUNCTION(Server, Reliable)
+	void ServerAbilityStateChange(const FGameplayTag& AbilityTag, const FGameplayTag& StateTag);
 
 	virtual void OnRep_ActivateAbilities() override;
 

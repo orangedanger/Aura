@@ -35,8 +35,8 @@ void UAuraAbilitySystemComponent::GrantGameplayAbilities(const TArray<TSubclassO
 		if (const UAuraGameplayAbility* GameplayAbility = Cast<UAuraGameplayAbility>(AbilitySpec.Ability))
 		{
 			//进行标签的绑定,自定义的Tag加入到Ability的动态标签中
-			AbilitySpec.DynamicAbilityTags.AddTag(GameplayAbility->InputGameplayTag);
-			AbilitySpec.DynamicAbilityTags.AddTag(FAuraGameplayTags::Get().Spell_State_Equipped);
+			AbilitySpec.GetDynamicSpecSourceTags().AddTag(GameplayAbility->InputGameplayTag);
+			AbilitySpec.GetDynamicSpecSourceTags().AddTag(FAuraGameplayTags::Get().Spell_State_Equipped);
 
 			//将Ability赋予给相应的角色
 			GiveAbility(AbilitySpec);
@@ -57,7 +57,7 @@ void UAuraAbilitySystemComponent::GrantGameplayPassiveAbilities(const TArray<TSu
 	}
 }
 
- 
+
 
 void UAuraAbilitySystemComponent::AbilityInputTagHeld(const FGameplayTag& InputTag)
 {
@@ -65,7 +65,7 @@ void UAuraAbilitySystemComponent::AbilityInputTagHeld(const FGameplayTag& InputT
 
 	for (FGameplayAbilitySpec& AbilitySpec : GetActivatableAbilities())
 	{
-		if (AbilitySpec.DynamicAbilityTags.HasTagExact(InputTag))
+		if (AbilitySpec.GetDynamicSpecSourceTags().HasTagExact(InputTag))
 		{
 			AbilitySpecInputPressed(AbilitySpec);
 			if (!AbilitySpec.IsActive())
@@ -83,7 +83,7 @@ void UAuraAbilitySystemComponent::AbilityInputTagReleased(const FGameplayTag& In
 
 	for (FGameplayAbilitySpec& AbilitySpec : GetActivatableAbilities())
 	{
-		if (AbilitySpec.DynamicAbilityTags.HasTagExact(InputTag))
+		if (AbilitySpec.GetDynamicSpecSourceTags().HasTagExact(InputTag))
 		{
 			//调用Instance->InputReleased函数 ，InputReleased函数功能需要重写
 			AbilitySpecInputReleased(AbilitySpec);
@@ -125,7 +125,7 @@ FGameplayTag UAuraAbilitySystemComponent::GetAbilityTagByAbilitySpec(const FGame
 
 FGameplayTag UAuraAbilitySystemComponent::GetInputTagByAbilitySpec(const FGameplayAbilitySpec& Spec)
 {
-	for (FGameplayTag Tag : Spec.DynamicAbilityTags)
+	for (FGameplayTag Tag : Spec.GetDynamicSpecSourceTags())
 	{
 		if (Tag.MatchesTag(FGameplayTag::RequestGameplayTag(FName("Ability"))))
 		{
@@ -137,7 +137,7 @@ FGameplayTag UAuraAbilitySystemComponent::GetInputTagByAbilitySpec(const FGamepl
 
 FGameplayTag UAuraAbilitySystemComponent::GetStateTagByAbilitySpec(const FGameplayAbilitySpec& Spec)
 {
-	for (FGameplayTag Tag : Spec.DynamicAbilityTags)
+	for (FGameplayTag Tag : Spec.GetDynamicSpecSourceTags())
 	{
 		if (Tag.MatchesTag(FGameplayTag::RequestGameplayTag(FName("Spell.State"))))
 		{
@@ -172,12 +172,17 @@ void UAuraAbilitySystemComponent::UpgradeAttribute(const FGameplayTag& Attribute
 	}
 }
 
+void UAuraAbilitySystemComponent::UpgradeSpellPoint(const FGameplayTag& AbilityTag)
+{
+	ServerAbilityStateChange(AbilityTag,FAuraGameplayTags::Get().Spell_State_Unlocked);
+}
+
 void UAuraAbilitySystemComponent::UpdataAbilitiesState(int InLevel)
 {
 	UAbilityInfo* AbilityInfo = UAuraAbilitySystemLibrary::GetAbilityInfo(GetAvatarActor());
 
 	if (AbilityInfo == nullptr)return;
-	
+
 	for (auto& Info : AbilityInfo->AbilityInfomation)
 	{
 		//如果技能需求等级小于当前等级
@@ -188,14 +193,13 @@ void UAuraAbilitySystemComponent::UpdataAbilitiesState(int InLevel)
 			{
 				//如果这个Ability不处于激活状态就激活它
 				FGameplayAbilitySpec AbilitySpec = FGameplayAbilitySpec(Info.Ability, 1);
-				AbilitySpec.DynamicAbilityTags.AddTag(FAuraGameplayTags::Get().Spell_State_Eligible);
+				AbilitySpec.GetDynamicSpecSourceTags().AddTag(FAuraGameplayTags::Get().Spell_State_Eligible);
 				GiveAbility(AbilitySpec);
 
 				//对于修改AbilitySpec的行为需要对其进行Mark来同步客户端信息
 				MarkAbilitySpecDirty(AbilitySpec);
 
 				ClientAbilityStateChange(Info.AbilityTag, FAuraGameplayTags::Get().Spell_State_Eligible);
-				
 			}
 		}
 	}
@@ -204,6 +208,32 @@ void UAuraAbilitySystemComponent::UpdataAbilitiesState(int InLevel)
 void UAuraAbilitySystemComponent::ClientAbilityStateChange_Implementation(const FGameplayTag& AbilityTag, const FGameplayTag& StateTag)
 {
 	StateChangeDelegate.Broadcast(AbilityTag, StateTag);
+}
+
+void UAuraAbilitySystemComponent::ServerAbilityStateChange_Implementation(const FGameplayTag& AbilityTag,
+	const FGameplayTag& StateTag)
+{
+	if (GetAvatarActor()->Implements<UPlayerInterface>())
+	{
+		const int32 ShellPoint = IPlayerInterface::Execute_GetShellPoint(GetAvatarActor());
+		if (ShellPoint > 0)
+		{
+			//获取Ability的Spec
+			FGameplayAbilitySpec* AbilitySpec = GetAbilitySpecFromAbilityTag(AbilityTag);
+
+			if (AbilitySpec&&AbilitySpec->GetDynamicSpecSourceTags().HasTagExact(FAuraGameplayTags::Get().Spell_State_Eligible))
+			{
+				IPlayerInterface::Execute_AddToShellPoint(GetAvatarActor(),-1);
+				//Ability的状态改变
+				AbilitySpec->GetDynamicSpecSourceTags().RemoveTag(FAuraGameplayTags::Get().Spell_State_Eligible);
+				AbilitySpec->GetDynamicSpecSourceTags().AddTag(FAuraGameplayTags::Get().Spell_State_Unlocked);
+				//告诉客户端Spec改变
+				MarkAbilitySpecDirty(*AbilitySpec);
+			}
+		}
+	}
+	//需要客户端的State进行变化
+	ClientAbilityStateChange(AbilityTag, StateTag);
 }
 
 void UAuraAbilitySystemComponent::OnRep_ActivateAbilities()
@@ -223,7 +253,7 @@ void UAuraAbilitySystemComponent::ServerUpgradeAttribute_Implementation(const FG
 	FGameplayEventData Payload;
 	Payload.EventTag = AttributeTag;
 	Payload.EventMagnitude = 1.f;
-	
+
 	UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(GetAvatarActor(), AttributeTag, Payload);
 
 	if (GetAvatarActor()->Implements<UPlayerInterface>())

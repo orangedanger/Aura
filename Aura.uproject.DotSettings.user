@@ -1,4 +1,6 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=44B4B820_002D7C45_002DF030_002D5E3D_002DEEAB0A0324D6_002Fd_003ADeploy_002Fd_003AImath_002D3_002E1_002E12_002Fd_003Ainclude_002Fd_003AImath_002Ff_003AImathShear_002Eh/@EntryIndexedValue">ForceIncluded</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=EA538CEF_002DA096_002D5447_002D4284_002DDE0AC1D5FDC5_002Fd_003Aunsupported_002Fd_003Atest_002Ff_003Acxx11_005Ftensor_005Finflation_002Ecpp/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:Boolean x:Key="/Default/CppUnrealEngine/RegenerateUE4ProjectPropertiesOnProjectFileChange/@EntryValue">False</s:Boolean>
 	
 	</wpf:ResourceDictionary>

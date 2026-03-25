@@ -4,12 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "AuraWidgetController.h"
+#include "GameplayTagContainer.h"
 #include "SpellMenuWidgetController.generated.h"
 
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnSpellPointSignature, int32, SpellPoint);
 /**
- * 
+ *
  */
 UCLASS(BlueprintType,Blueprintable)
 class AURA_API USpellMenuWidgetController : public UAuraWidgetController
@@ -18,6 +19,9 @@ class AURA_API USpellMenuWidgetController : public UAuraWidgetController
 public:
 	virtual void InitBroadcast() override;
 	virtual void BroadcastCallbackToDependences()override;
+
+	UFUNCTION(BlueprintCallable)
+	void UnlockSpell(const FGameplayTag& AbilityTag);
 
 	UPROPERTY(BlueprintAssignable, Category = "SpellMenu|Delegate")
 	FOnSpellPointSignature SpellPointDelegate;
