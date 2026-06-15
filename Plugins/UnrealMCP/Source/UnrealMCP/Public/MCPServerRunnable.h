@@ -1,11 +1,11 @@
-﻿#pragma once
+#pragma once
 
 #include "CoreMinimal.h"
 #include "HAL/Runnable.h"
 #include "Sockets.h"
 #include "Interfaces/IPv4/IPv4Address.h"
 
-class UEpicUnrealMCPBridge;
+class UUnrealMCPBridge;
 
 /**
  * Runnable class for the MCP server thread
@@ -13,7 +13,7 @@ class UEpicUnrealMCPBridge;
 class FMCPServerRunnable : public FRunnable
 {
 public:
-	FMCPServerRunnable(UEpicUnrealMCPBridge* InBridge, TSharedPtr<FSocket> InListenerSocket);
+	FMCPServerRunnable(UUnrealMCPBridge* InBridge, TSharedPtr<FSocket> InListenerSocket);
 	virtual ~FMCPServerRunnable();
 
 	// FRunnable interface
@@ -27,7 +27,7 @@ protected:
 	void ProcessMessage(TSharedPtr<FSocket> Client, const FString& Message);
 
 private:
-	UEpicUnrealMCPBridge* Bridge;
+	UUnrealMCPBridge* Bridge;
 	TSharedPtr<FSocket> ListenerSocket;
 	TSharedPtr<FSocket> ClientSocket;
 	bool bRunning;

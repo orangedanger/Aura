@@ -15,7 +15,7 @@ class UAttributeSet;
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnXpChangedDelegate, int32);
 
 /**
- * 
+ *
  */
 UCLASS()
 class AURA_API AAuraPlayerState : public APlayerState, public IAbilitySystemInterface

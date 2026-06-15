@@ -7,24 +7,18 @@ public class UnrealMCP : ModuleRules
 	public UnrealMCP(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
-		
-		PublicDefinitions.Add("UNREALMCP_EXPORTS=1");
+		// Use IWYUSupport instead of the deprecated bEnforceIWYU in UE5.5
+		IWYUSupport = IWYUSupport.Full;
 
 		PublicIncludePaths.AddRange(
 			new string[] {
-				System.IO.Path.Combine(ModuleDirectory, "Public"),
-				System.IO.Path.Combine(ModuleDirectory, "Public/Commands"),
-				System.IO.Path.Combine(ModuleDirectory, "Public/Commands/BlueprintGraph"),
-				System.IO.Path.Combine(ModuleDirectory, "Public/Commands/BlueprintGraph/Nodes")
+				// ... add public include paths required here ...
 			}
 		);
-
+		
 		PrivateIncludePaths.AddRange(
 			new string[] {
-				System.IO.Path.Combine(ModuleDirectory, "Private"),
-				System.IO.Path.Combine(ModuleDirectory, "Private/Commands"),
-				System.IO.Path.Combine(ModuleDirectory, "Private/Commands/BlueprintGraph"),
-				System.IO.Path.Combine(ModuleDirectory, "Private/Commands/BlueprintGraph/Nodes")
+				// ... add other private include paths required here ...
 			}
 		);
 		
@@ -40,22 +34,22 @@ public class UnrealMCP : ModuleRules
 				"HTTP",
 				"Json",
 				"JsonUtilities",
-				"DeveloperSettings",
-				"PhysicsCore",
-				"UnrealEd",           // For Blueprint editing
-				"BlueprintGraph",     // For K2Node classes (F15-F22)
-				"KismetCompiler"      // For Blueprint compilation (F15-F22)
+				"DeveloperSettings"
 			}
 		);
 		
 		PrivateDependencyModuleNames.AddRange(
 			new string[]
 			{
+				"UnrealEd",
 				"EditorScriptingUtilities",
 				"EditorSubsystem",
 				"Slate",
 				"SlateCore",
+				"UMG",
 				"Kismet",
+				"KismetCompiler",
+				"BlueprintGraph",
 				"Projects",
 				"AssetRegistry"
 			}
@@ -66,9 +60,10 @@ public class UnrealMCP : ModuleRules
 			PrivateDependencyModuleNames.AddRange(
 				new string[]
 				{
-					"PropertyEditor",      // For property editing
+					"PropertyEditor",      // For widget property editing
 					"ToolMenus",           // For editor UI
-					"BlueprintEditorLibrary" // For Blueprint utilities
+					"BlueprintEditorLibrary", // For Blueprint utilities
+					"UMGEditor"           // For WidgetBlueprint.h and other UMG editor functionality
 				}
 			);
 		}
